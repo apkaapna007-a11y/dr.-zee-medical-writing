@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as BlogRouteImport } from './routes/blog'
+import { Route as CvRouteImport } from './routes/cv'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as PublicationsRouteImport } from './routes/publications'
 import { Route as ServicesRouteImport } from './routes/services'
@@ -30,6 +31,11 @@ const AboutRoute = AboutRouteImport.update({
 const BlogRoute = BlogRouteImport.update({
   id: '/blog',
   path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CvRoute = CvRouteImport.update({
+  id: '/cv',
+  path: '/cv',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PortfolioRoute = PortfolioRouteImport.update({
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/blog': typeof BlogRoute
+  '/cv': typeof CvRoute
   '/portfolio': typeof PortfolioRoute
   '/publications': typeof PublicationsRoute
   '/services': typeof ServicesRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/blog': typeof BlogRoute
+  '/cv': typeof CvRoute
   '/portfolio': typeof PortfolioRoute
   '/publications': typeof PublicationsRoute
   '/services': typeof ServicesRoute
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/blog': typeof BlogRoute
+  '/cv': typeof CvRoute
   '/portfolio': typeof PortfolioRoute
   '/publications': typeof PublicationsRoute
   '/services': typeof ServicesRoute
@@ -87,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/blog'
+    | '/cv'
     | '/portfolio'
     | '/publications'
     | '/services'
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/blog'
+    | '/cv'
     | '/portfolio'
     | '/publications'
     | '/services'
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/blog'
+    | '/cv'
     | '/portfolio'
     | '/publications'
     | '/services'
@@ -115,6 +127,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   BlogRoute: typeof BlogRoute
+  CvRoute: typeof CvRoute
   PortfolioRoute: typeof PortfolioRoute
   PublicationsRoute: typeof PublicationsRoute
   ServicesRoute: typeof ServicesRoute
@@ -142,6 +155,13 @@ declare module '@tanstack/react-router' {
       path: '/blog'
       fullPath: '/blog'
       preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cv': {
+      id: '/cv'
+      path: '/cv'
+      fullPath: '/cv'
+      preLoaderRoute: typeof CvRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/portfolio': {
@@ -179,6 +199,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   BlogRoute: BlogRoute,
+  CvRoute: CvRoute,
   PortfolioRoute: PortfolioRoute,
   PublicationsRoute: PublicationsRoute,
   ServicesRoute: ServicesRoute,
