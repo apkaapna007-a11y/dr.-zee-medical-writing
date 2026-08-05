@@ -1,24 +1,179 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, BadgeCheck, BookOpen, FileText, ShieldCheck, Stethoscope } from "lucide-react";
+import { Reveal } from "@/components/site/Reveal";
+import { SERVICES, PORTFOLIO, TESTIMONIALS } from "@/content/site";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "DrZeeWrites — Physician Medical Writer & Scientific Editor" },
+      {
+        name: "description",
+        content:
+          "MBBS, MCPS Paediatrics. Evidence-based medical writing, scientific writing, medical review and patient education for pharma, digital health and med-comms teams.",
+      },
+      { property: "og:title", content: "DrZeeWrites — Physician Medical Writer" },
+      {
+        property: "og:description",
+        content:
+          "Physician-authored medical content: manuscripts, white papers, drug monographs, patient education and healthcare SEO.",
+      },
+    ],
+  }),
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+const TRUST = [
+  { icon: Stethoscope, label: "MBBS, MCPS Paediatrics" },
+  { icon: ShieldCheck, label: "PICU clinical experience" },
+  { icon: BookOpen, label: "Evidence-first, fully referenced" },
+  { icon: BadgeCheck, label: "AMA / Vancouver styling" },
+];
+
+function Home() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <section className="relative overflow-hidden border-b border-border/60">
+        <div className="pointer-events-none absolute inset-0 halo" aria-hidden />
+        <div
+          className="pointer-events-none absolute inset-0 rule-grid opacity-[0.35]"
+          aria-hidden
+        />
+        <div className="relative mx-auto max-w-6xl px-5 py-24 md:py-32">
+          <Reveal>
+            <p className="eyebrow">Physician · Medical Writer · Scientific Editor</p>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <h1 className="mt-5 max-w-3xl text-balance font-display text-4xl leading-[1.08] sm:text-5xl md:text-6xl">
+              Complex medical science, translated with clinical precision.
+            </h1>
+          </Reveal>
+          <Reveal delay={0.16}>
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+              I'm a paediatrician (MBBS, MCPS) with intensive care experience who writes, reviews
+              and edits medical content for healthcare organisations, pharmaceutical companies,
+              digital health startups and medical communications agencies.
+            </p>
+          </Reveal>
+          <Reveal delay={0.24}>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link
+                to="/contact"
+                className="inline-flex min-h-11 items-center gap-2 rounded-md bg-primary px-6 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+              >
+                Start a project <ArrowRight className="size-4" />
+              </Link>
+              <Link
+                to="/portfolio"
+                className="inline-flex min-h-11 items-center gap-2 rounded-md border border-border bg-card px-6 text-sm font-semibold transition-colors hover:border-accent"
+              >
+                View writing samples
+              </Link>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.32}>
+            <ul className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {TRUST.map(({ icon: Icon, label }) => (
+                <li
+                  key={label}
+                  className="flex items-center gap-3 rounded-lg surface px-4 py-3 text-sm"
+                >
+                  <Icon className="size-4 shrink-0 text-accent" aria-hidden />
+                  <span className="text-muted-foreground">{label}</span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-5 py-20 md:py-28">
+        <Reveal>
+          <p className="eyebrow">Services</p>
+          <h2 className="mt-3 max-w-2xl text-3xl md:text-4xl">
+            Editorial work that holds up to clinical scrutiny.
+          </h2>
+        </Reveal>
+        <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {SERVICES.slice(0, 6).map((s, i) => (
+            <Reveal key={s.slug} delay={i * 0.05}>
+              <article className="h-full rounded-xl surface lift p-6">
+                <FileText className="size-5 text-accent" aria-hidden />
+                <h3 className="mt-4 text-lg">{s.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.summary}</p>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal delay={0.1}>
+          <Link
+            to="/services"
+            className="mt-8 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-accent hover:underline"
+          >
+            All nine services <ArrowRight className="size-4" />
+          </Link>
+        </Reveal>
+      </section>
+
+      <section className="border-y border-border/60 bg-muted/40">
+        <div className="mx-auto max-w-6xl px-5 py-20 md:py-28">
+          <Reveal>
+            <p className="eyebrow">Featured portfolio</p>
+            <h2 className="mt-3 max-w-2xl text-3xl md:text-4xl">Selected work across audiences.</h2>
+          </Reveal>
+          <div className="mt-12 grid gap-4 md:grid-cols-3">
+            {PORTFOLIO.slice(0, 3).map((p, i) => (
+              <Reveal key={p.title} delay={i * 0.06}>
+                <article className="h-full rounded-xl surface lift p-6">
+                  <span className="eyebrow">{p.category}</span>
+                  <h3 className="mt-3 text-lg leading-snug">{p.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.blurb}</p>
+                  <p className="mt-4 text-xs text-muted-foreground">{p.audience}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-5 py-20 md:py-28">
+        <Reveal>
+          <p className="eyebrow">Client feedback</p>
+        </Reveal>
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {TESTIMONIALS.map((t, i) => (
+            <Reveal key={t.name} delay={i * 0.06}>
+              <figure className="h-full rounded-xl surface p-6">
+                <blockquote className="font-display text-lg leading-snug">"{t.quote}"</blockquote>
+                <figcaption className="mt-5 text-sm text-muted-foreground">
+                  {t.name} · {t.role}
+                </figcaption>
+              </figure>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-5 pb-8">
+        <Reveal>
+          <div className="overflow-hidden rounded-2xl ink-panel px-8 py-14 md:px-14">
+            <h2 className="max-w-2xl text-3xl md:text-4xl">
+              Need content a clinician would sign their name to?
+            </h2>
+            <p className="mt-4 max-w-xl text-sm leading-relaxed opacity-80">
+              Share your brief, audience and deadline. You'll get a scoped proposal with a sample
+              approach within two business days.
+            </p>
+            <Link
+              to="/contact"
+              className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-md bg-background px-6 text-sm font-semibold text-foreground transition-opacity hover:opacity-90"
+            >
+              Get in touch <ArrowRight className="size-4" />
+            </Link>
+          </div>
+        </Reveal>
+      </section>
+    </>
   );
 }
