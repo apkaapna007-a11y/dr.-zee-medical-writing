@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as BlogRouteImport } from './routes/blog'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CvRouteImport } from './routes/cv'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as PublicationsRouteImport } from './routes/publications'
@@ -31,6 +32,11 @@ const AboutRoute = AboutRouteImport.update({
 const BlogRoute = BlogRouteImport.update({
   id: '/blog',
   path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CvRoute = CvRouteImport.update({
@@ -63,6 +69,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/blog': typeof BlogRoute
+  '/contact': typeof ContactRoute
   '/cv': typeof CvRoute
   '/portfolio': typeof PortfolioRoute
   '/publications': typeof PublicationsRoute
@@ -73,6 +80,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/blog': typeof BlogRoute
+  '/contact': typeof ContactRoute
   '/cv': typeof CvRoute
   '/portfolio': typeof PortfolioRoute
   '/publications': typeof PublicationsRoute
@@ -84,6 +92,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/blog': typeof BlogRoute
+  '/contact': typeof ContactRoute
   '/cv': typeof CvRoute
   '/portfolio': typeof PortfolioRoute
   '/publications': typeof PublicationsRoute
@@ -96,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/blog'
+    | '/contact'
     | '/cv'
     | '/portfolio'
     | '/publications'
@@ -106,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/blog'
+    | '/contact'
     | '/cv'
     | '/portfolio'
     | '/publications'
@@ -116,6 +127,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/blog'
+    | '/contact'
     | '/cv'
     | '/portfolio'
     | '/publications'
@@ -127,6 +139,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   BlogRoute: typeof BlogRoute
+  ContactRoute: typeof ContactRoute
   CvRoute: typeof CvRoute
   PortfolioRoute: typeof PortfolioRoute
   PublicationsRoute: typeof PublicationsRoute
@@ -155,6 +168,13 @@ declare module '@tanstack/react-router' {
       path: '/blog'
       fullPath: '/blog'
       preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cv': {
@@ -199,6 +219,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   BlogRoute: BlogRoute,
+  ContactRoute: ContactRoute,
   CvRoute: CvRoute,
   PortfolioRoute: PortfolioRoute,
   PublicationsRoute: PublicationsRoute,
