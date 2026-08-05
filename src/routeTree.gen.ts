@@ -15,6 +15,7 @@ import { Route as BlogRouteImport } from './routes/blog'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CvRouteImport } from './routes/cv'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PublicationsRouteImport } from './routes/publications'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
@@ -49,6 +50,11 @@ const PortfolioRoute = PortfolioRouteImport.update({
   path: '/portfolio',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PublicationsRoute = PublicationsRouteImport.update({
   id: '/publications',
   path: '/publications',
@@ -72,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/cv': typeof CvRoute
   '/portfolio': typeof PortfolioRoute
+  '/privacy': typeof PrivacyRoute
   '/publications': typeof PublicationsRoute
   '/services': typeof ServicesRoute
   '/testimonials': typeof TestimonialsRoute
@@ -83,6 +90,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/cv': typeof CvRoute
   '/portfolio': typeof PortfolioRoute
+  '/privacy': typeof PrivacyRoute
   '/publications': typeof PublicationsRoute
   '/services': typeof ServicesRoute
   '/testimonials': typeof TestimonialsRoute
@@ -95,6 +103,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/cv': typeof CvRoute
   '/portfolio': typeof PortfolioRoute
+  '/privacy': typeof PrivacyRoute
   '/publications': typeof PublicationsRoute
   '/services': typeof ServicesRoute
   '/testimonials': typeof TestimonialsRoute
@@ -108,6 +117,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cv'
     | '/portfolio'
+    | '/privacy'
     | '/publications'
     | '/services'
     | '/testimonials'
@@ -119,6 +129,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cv'
     | '/portfolio'
+    | '/privacy'
     | '/publications'
     | '/services'
     | '/testimonials'
@@ -130,6 +141,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cv'
     | '/portfolio'
+    | '/privacy'
     | '/publications'
     | '/services'
     | '/testimonials'
@@ -142,6 +154,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   CvRoute: typeof CvRoute
   PortfolioRoute: typeof PortfolioRoute
+  PrivacyRoute: typeof PrivacyRoute
   PublicationsRoute: typeof PublicationsRoute
   ServicesRoute: typeof ServicesRoute
   TestimonialsRoute: typeof TestimonialsRoute
@@ -191,6 +204,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PortfolioRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/publications': {
       id: '/publications'
       path: '/publications'
@@ -222,6 +242,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   CvRoute: CvRoute,
   PortfolioRoute: PortfolioRoute,
+  PrivacyRoute: PrivacyRoute,
   PublicationsRoute: PublicationsRoute,
   ServicesRoute: ServicesRoute,
   TestimonialsRoute: TestimonialsRoute,
