@@ -39,6 +39,13 @@ const TRUST = [
   { icon: BadgeCheck, label: "AMA / Vancouver styling" },
 ];
 
+const STATS: { value: string; label: string }[] = [
+  { value: "9", label: "Specialist services" },
+  { value: "48h", label: "Proposal turnaround" },
+  { value: "100%", label: "Referenced & physician-authored" },
+];
+
+
 function Home() {
   return (
     <>
