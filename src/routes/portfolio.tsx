@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Download, FileText } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
+import { ReviewShowcase } from "@/components/site/ReviewShowcase";
 import { PORTFOLIO, PORTFOLIO_CATEGORIES } from "@/content/site";
 import { cn } from "@/lib/utils";
 
