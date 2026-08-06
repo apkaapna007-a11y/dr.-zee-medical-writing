@@ -223,9 +223,9 @@
 @utility gold-text {
   background-image: linear-gradient(
     100deg,
-    color-mix(in oklab, var(--foreground) 92%, transparent),
-    var(--brass) 45%,
-    color-mix(in oklab, var(--accent) 85%, var(--foreground)) 90%
+    color-mix(in oklab, var(--foreground) 96%, transparent),
+    color-mix(in oklab, var(--brass) 60%, var(--foreground)) 50%,
+    color-mix(in oklab, var(--accent) 60%, var(--foreground)) 95%
   );
   background-clip: text;
   color: transparent;

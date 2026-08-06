@@ -56,7 +56,7 @@ function Home() {
           aria-hidden
           width={1600}
           height={1008}
-          className="pointer-events-none absolute inset-0 size-full object-cover opacity-[0.14]"
+          className="pointer-events-none absolute inset-0 size-full object-cover opacity-[0.07]"
         />
         <div className="pointer-events-none absolute inset-0 halo" aria-hidden />
         <div
