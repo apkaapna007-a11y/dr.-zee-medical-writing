@@ -46,7 +46,10 @@ function Portfolio() {
         </div>
       </section>
 
+      <ReviewShowcase />
+
       <section className="mx-auto max-w-6xl px-5 py-16">
+
         <Reveal>
           <div className="flex flex-wrap gap-2" role="group" aria-label="Filter portfolio">
             {["All", ...PORTFOLIO_CATEGORIES].map((c) => (
