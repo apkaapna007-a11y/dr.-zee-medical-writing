@@ -52,7 +52,7 @@ function Services() {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((s, i) => (
             <Reveal key={s.slug} delay={(i % 3) * 0.05}>
-              <article className="flex h-full flex-col rounded-xl surface lift p-6">
+              <article className="flex h-full flex-col rounded-xl glass lift p-6">
                 <h2 className="text-lg">{s.title}</h2>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.summary}</p>
                 <ul className="mt-5 grid gap-2 border-t border-border/60 pt-5 text-sm">
@@ -77,7 +77,7 @@ function Services() {
           <div className="mt-10 grid gap-4 md:grid-cols-4">
             {PROCESS.map((p, i) => (
               <Reveal key={p.step} delay={i * 0.06}>
-                <div className="h-full rounded-xl surface p-6">
+                <div className="h-full rounded-xl glass p-6">
                   <span className="font-display text-3xl text-accent">{p.step}</span>
                   <h3 className="mt-3 text-base font-semibold">{p.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground">{p.detail}</p>

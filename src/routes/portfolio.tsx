@@ -70,7 +70,7 @@ function Portfolio() {
         <div className="mt-10 grid gap-4 md:grid-cols-2">
           {items.map((p, i) => (
             <Reveal key={p.title} delay={(i % 2) * 0.05}>
-              <article className="flex h-full flex-col rounded-xl surface lift p-6">
+              <article className="flex h-full flex-col rounded-xl glass lift p-6">
                 <span className="eyebrow">{p.category}</span>
                 <h2 className="mt-3 text-xl leading-snug">{p.title}</h2>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.blurb}</p>

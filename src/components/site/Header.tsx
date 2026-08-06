@@ -43,10 +43,11 @@ export function Header() {
           ))}
           <Link
             to="/contact"
-            className="ml-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+            className="glow-cta ml-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground"
           >
             Work with me
           </Link>
+
         </nav>
 
         <button

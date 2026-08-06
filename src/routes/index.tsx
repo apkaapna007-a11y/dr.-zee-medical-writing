@@ -141,7 +141,7 @@ function Home() {
         <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {SERVICES.slice(0, 6).map((s, i) => (
             <Reveal key={s.slug} delay={i * 0.05}>
-              <article className="h-full rounded-xl surface lift p-6">
+              <article className="h-full rounded-xl glass lift p-6">
                 <FileText className="size-5 text-accent" aria-hidden />
                 <h3 className="mt-4 text-lg">{s.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.summary}</p>
@@ -168,7 +168,7 @@ function Home() {
           <div className="mt-12 grid gap-4 md:grid-cols-3">
             {PORTFOLIO.slice(0, 3).map((p, i) => (
               <Reveal key={p.title} delay={i * 0.06}>
-                <article className="h-full rounded-xl surface lift p-6">
+                <article className="h-full rounded-xl glass lift p-6">
                   <span className="eyebrow">{p.category}</span>
                   <h3 className="mt-3 text-lg leading-snug">{p.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.blurb}</p>
@@ -187,7 +187,7 @@ function Home() {
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {TESTIMONIALS.map((t, i) => (
             <Reveal key={t.name} delay={i * 0.06}>
-              <figure className="h-full rounded-xl surface p-6">
+              <figure className="h-full rounded-xl glass p-6">
                 <blockquote className="font-display text-lg leading-snug">"{t.quote}"</blockquote>
                 <figcaption className="mt-5 text-sm text-muted-foreground">
                   {t.name} · {t.role}

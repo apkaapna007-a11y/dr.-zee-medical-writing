@@ -69,7 +69,7 @@ function Contact() {
 
       <section className="mx-auto grid max-w-6xl gap-10 px-5 py-20 md:grid-cols-[1.3fr_1fr]">
         <Reveal>
-          <form onSubmit={onSubmit} className="rounded-xl surface p-7">
+          <form onSubmit={onSubmit} className="rounded-xl glass p-7">
             <div className="grid gap-5 sm:grid-cols-2">
               <div className="grid gap-2">
                 <label htmlFor="name" className="text-sm font-medium">
@@ -167,7 +167,7 @@ function Contact() {
                 href={href}
                 target={href.startsWith("http") ? "_blank" : undefined}
                 rel="noreferrer"
-                className="flex min-h-11 items-center gap-3 rounded-xl surface lift px-5 py-4 text-sm"
+                className="flex min-h-11 items-center gap-3 rounded-xl glass lift px-5 py-4 text-sm"
               >
                 <Icon className="size-4 text-accent" aria-hidden />
                 <span>{label}</span>
