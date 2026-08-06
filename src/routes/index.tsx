@@ -1,7 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, BadgeCheck, BookOpen, FileText, ShieldCheck, Stethoscope } from "lucide-react";
+import {
+  ArrowRight,
+  BadgeCheck,
+  BookOpen,
+  FileText,
+  ShieldCheck,
+  Sparkles,
+  Stethoscope,
+} from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { SERVICES, PORTFOLIO, TESTIMONIALS } from "@/content/site";
+import heroAurora from "@/assets/hero-aurora.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -30,54 +39,87 @@ const TRUST = [
   { icon: BadgeCheck, label: "AMA / Vancouver styling" },
 ];
 
+const STATS: { value: string; label: string }[] = [
+  { value: "9", label: "Specialist services" },
+  { value: "48h", label: "Proposal turnaround" },
+  { value: "100%", label: "Referenced & physician-authored" },
+];
+
+
 function Home() {
   return (
     <>
       <section className="relative overflow-hidden border-b border-border/60">
+        <img
+          src={heroAurora}
+          alt=""
+          aria-hidden
+          width={1600}
+          height={1008}
+          className="pointer-events-none absolute inset-0 size-full object-cover opacity-[0.07]"
+        />
         <div className="pointer-events-none absolute inset-0 halo" aria-hidden />
         <div
-          className="pointer-events-none absolute inset-0 rule-grid opacity-[0.35]"
+          className="pointer-events-none absolute inset-0 rule-grid opacity-[0.25]"
           aria-hidden
         />
-        <div className="relative mx-auto max-w-6xl px-5 py-24 md:py-32">
+        <div className="pointer-events-none absolute inset-0 grain opacity-[0.03]" aria-hidden />
+        <div className="relative mx-auto max-w-6xl px-5 py-24 md:py-36">
           <Reveal>
-            <p className="eyebrow">Physician · Medical Writer · Scientific Editor</p>
+            <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              <Sparkles className="size-3.5 text-brass" aria-hidden />
+              Physician · Medical Writer · Scientific Editor
+            </span>
           </Reveal>
           <Reveal delay={0.08}>
-            <h1 className="mt-5 max-w-3xl text-balance font-display text-4xl leading-[1.08] sm:text-5xl md:text-6xl">
-              Complex medical science, translated with clinical precision.
+            <h1 className="mt-7 max-w-4xl text-balance font-display text-[2.6rem] leading-[1.04] sm:text-6xl md:text-7xl">
+              Complex medical science,{" "}
+              <span className="gold-text italic">translated with clinical precision.</span>
             </h1>
           </Reveal>
           <Reveal delay={0.16}>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+            <p className="mt-7 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
               I'm a paediatrician (MBBS, MCPS) with intensive care experience who writes, reviews
               and edits medical content for healthcare organisations, pharmaceutical companies,
               digital health startups and medical communications agencies.
             </p>
           </Reveal>
           <Reveal delay={0.24}>
-            <div className="mt-9 flex flex-wrap gap-3">
+            <div className="mt-10 flex flex-wrap gap-3">
               <Link
                 to="/contact"
-                className="inline-flex min-h-11 items-center gap-2 rounded-md bg-primary px-6 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+                className="glow-cta inline-flex min-h-12 items-center gap-2 rounded-full bg-primary px-7 text-sm font-semibold text-primary-foreground"
               >
                 Start a project <ArrowRight className="size-4" />
               </Link>
               <Link
                 to="/portfolio"
-                className="inline-flex min-h-11 items-center gap-2 rounded-md border border-border bg-card px-6 text-sm font-semibold transition-colors hover:border-accent"
+                className="inline-flex min-h-12 items-center gap-2 rounded-full glass px-7 text-sm font-semibold transition-colors hover:border-accent"
               >
                 View writing samples
               </Link>
             </div>
           </Reveal>
 
-          <Reveal delay={0.32}>
-            <ul className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <Reveal delay={0.3}>
+            <dl className="mt-16 grid gap-px overflow-hidden rounded-2xl glass sm:grid-cols-3">
+              {STATS.map((s) => (
+                <div key={s.label} className="px-6 py-6">
+                  <dt className="font-display text-3xl gold-text">{s.value}</dt>
+                  <dd className="mt-1 text-xs uppercase tracking-[0.14em] text-muted-foreground">
+                    {s.label}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
+
+          <Reveal delay={0.36}>
+            <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {TRUST.map(({ icon: Icon, label }) => (
                 <li
                   key={label}
-                  className="flex items-center gap-3 rounded-lg surface px-4 py-3 text-sm"
+                  className="flex items-center gap-3 rounded-xl glass px-4 py-3.5 text-sm"
                 >
                   <Icon className="size-4 shrink-0 text-accent" aria-hidden />
                   <span className="text-muted-foreground">{label}</span>
@@ -87,6 +129,7 @@ function Home() {
           </Reveal>
         </div>
       </section>
+
 
       <section className="mx-auto max-w-6xl px-5 py-20 md:py-28">
         <Reveal>
@@ -98,7 +141,7 @@ function Home() {
         <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {SERVICES.slice(0, 6).map((s, i) => (
             <Reveal key={s.slug} delay={i * 0.05}>
-              <article className="h-full rounded-xl surface lift p-6">
+              <article className="h-full rounded-xl glass lift p-6">
                 <FileText className="size-5 text-accent" aria-hidden />
                 <h3 className="mt-4 text-lg">{s.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.summary}</p>
@@ -125,7 +168,7 @@ function Home() {
           <div className="mt-12 grid gap-4 md:grid-cols-3">
             {PORTFOLIO.slice(0, 3).map((p, i) => (
               <Reveal key={p.title} delay={i * 0.06}>
-                <article className="h-full rounded-xl surface lift p-6">
+                <article className="h-full rounded-xl glass lift p-6">
                   <span className="eyebrow">{p.category}</span>
                   <h3 className="mt-3 text-lg leading-snug">{p.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.blurb}</p>
@@ -144,7 +187,7 @@ function Home() {
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {TESTIMONIALS.map((t, i) => (
             <Reveal key={t.name} delay={i * 0.06}>
-              <figure className="h-full rounded-xl surface p-6">
+              <figure className="h-full rounded-xl glass p-6">
                 <blockquote className="font-display text-lg leading-snug">"{t.quote}"</blockquote>
                 <figcaption className="mt-5 text-sm text-muted-foreground">
                   {t.name} · {t.role}

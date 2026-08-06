@@ -90,7 +90,7 @@ function CV() {
         <div className="grid gap-10 md:grid-cols-2">
           {SECTIONS.map((s, i) => (
             <Reveal key={s.heading} delay={(i % 2) * 0.05}>
-              <div className="h-full rounded-xl surface p-7">
+              <div className="h-full rounded-xl glass p-7">
                 <h2 className="text-xl">{s.heading}</h2>
                 <ul className="mt-4 grid gap-3 text-sm leading-relaxed text-muted-foreground">
                   {s.items.map((it) => (

@@ -40,7 +40,7 @@ function Testimonials() {
         <div className="grid gap-4 md:grid-cols-2">
           {TESTIMONIALS.map((t, i) => (
             <Reveal key={t.name} delay={i * 0.06}>
-              <figure className="h-full rounded-xl surface p-8">
+              <figure className="h-full rounded-xl glass p-8">
                 <Quote className="size-5 text-accent" aria-hidden />
                 <blockquote className="mt-4 font-display text-xl leading-snug">
                   "{t.quote}"

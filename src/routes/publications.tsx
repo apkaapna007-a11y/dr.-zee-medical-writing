@@ -43,7 +43,7 @@ function Publications() {
         <ol className="grid gap-4">
           {PUBLICATIONS.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.06}>
-              <li className="rounded-xl surface p-6 md:p-8">
+              <li className="rounded-xl glass p-6 md:p-8">
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="eyebrow">{p.type}</span>
                   <span className="text-xs text-muted-foreground">{p.year}</span>

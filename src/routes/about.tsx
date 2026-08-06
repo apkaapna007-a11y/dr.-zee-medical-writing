@@ -90,7 +90,7 @@ function About() {
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {QUALIFICATIONS.map((q, i) => (
             <Reveal key={q.title} delay={i * 0.05}>
-              <div className="h-full rounded-xl surface p-6">
+              <div className="h-full rounded-xl glass p-6">
                 <h2 className="text-lg">{q.title}</h2>
                 <p className="mt-2 text-sm text-muted-foreground">{q.detail}</p>
               </div>
@@ -132,15 +132,15 @@ function About() {
             </p>
           </blockquote>
           <ul className="mt-10 grid gap-4 text-sm text-muted-foreground md:grid-cols-3">
-            <li className="rounded-xl surface p-6">
+            <li className="rounded-xl glass p-6">
               Every clinical claim traced to primary literature or current guidance — no
               second-hand citation.
             </li>
-            <li className="rounded-xl surface p-6">
+            <li className="rounded-xl glass p-6">
               Audience calibration first: a caregiver leaflet and an HCP article are different
               disciplines, not different tones.
             </li>
-            <li className="rounded-xl surface p-6">
+            <li className="rounded-xl glass p-6">
               Uncertainty is stated, not smoothed over. Credibility is the deliverable.
             </li>
           </ul>
