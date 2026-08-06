@@ -18,7 +18,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/75 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-border/50 bg-background/60 backdrop-blur-2xl backdrop-saturate-150">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5">
         <Link to="/" className="group flex items-center gap-2.5" onClick={() => setOpen(false)}>
           <span className="flex size-8 items-center justify-center rounded-md ink-panel">
