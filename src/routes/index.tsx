@@ -63,7 +63,7 @@ function Home() {
           className="pointer-events-none absolute inset-0 rule-grid opacity-[0.25]"
           aria-hidden
         />
-        <div className="pointer-events-none absolute inset-0 grain opacity-[0.12]" aria-hidden />
+        <div className="pointer-events-none absolute inset-0 grain opacity-[0.03]" aria-hidden />
         <div className="relative mx-auto max-w-6xl px-5 py-24 md:py-36">
           <Reveal>
             <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
