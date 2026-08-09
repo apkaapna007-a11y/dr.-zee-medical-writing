@@ -92,7 +92,7 @@ export function ReviewDownload({ review, variant = "solid", label, className }: 
                 autoComplete="name"
                 className="min-h-11 w-full rounded-lg border border-border bg-card px-3 text-sm outline-none focus:border-accent"
               />
-              {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
+              {errors['name'] && <p className="text-xs text-destructive">{errors['name']}</p>}
             </div>
 
             <div className="space-y-1.5">
@@ -107,7 +107,7 @@ export function ReviewDownload({ review, variant = "solid", label, className }: 
                 autoComplete="email"
                 className="min-h-11 w-full rounded-lg border border-border bg-card px-3 text-sm outline-none focus:border-accent"
               />
-              {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
+              {errors['email'] && <p className="text-xs text-destructive">{errors['email']}</p>}
             </div>
 
             <div className="space-y-1.5">
@@ -121,8 +121,8 @@ export function ReviewDownload({ review, variant = "solid", label, className }: 
                 autoComplete="organization"
                 className="min-h-11 w-full rounded-lg border border-border bg-card px-3 text-sm outline-none focus:border-accent"
               />
-              {errors.organisation && (
-                <p className="text-xs text-destructive">{errors.organisation}</p>
+              {errors['organisation'] && (
+                <p className="text-xs text-destructive">{errors['organisation']}</p>
               )}
             </div>
 

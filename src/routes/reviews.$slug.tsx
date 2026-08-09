@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowUpRight, CalendarDays, FileText, Users } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { ReviewDownload } from "@/components/site/ReviewDownload";
-import { getReviewBySlug, LITERATURE_REVIEWS } from "@/content/reviews";
+import { getReviewBySlug, LITERATURE_REVIEWS, type ReviewSample } from "@/content/reviews";
 
 export const Route = createFileRoute("/reviews/$slug")({
   loader: ({ params }) => {
@@ -97,7 +97,7 @@ function ReviewNotFound() {
 }
 
 function ReviewPage() {
-  const { review } = Route.useLoaderData();
+  const { review } = Route.useLoaderData() as { review: ReviewSample };
   const others = LITERATURE_REVIEWS.filter((r) => r.slug !== review.slug);
 
   return (
