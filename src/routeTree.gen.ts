@@ -20,6 +20,7 @@ import { Route as PublicationsRouteImport } from './routes/publications'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
+import { Route as ReviewsSlugRouteImport } from './routes/reviews.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -76,6 +77,11 @@ const TestimonialsRoute = TestimonialsRouteImport.update({
   path: '/testimonials',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReviewsSlugRoute = ReviewsSlugRouteImport.update({
+  id: '/reviews/$slug',
+  path: '/reviews/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -89,6 +95,7 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
+  '/reviews/$slug': typeof ReviewsSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -102,6 +109,7 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
+  '/reviews/$slug': typeof ReviewsSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -116,6 +124,7 @@ export interface FileRoutesById {
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
+  '/reviews/$slug': typeof ReviewsSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -131,6 +140,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/terms'
     | '/testimonials'
+    | '/reviews/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -144,6 +154,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/terms'
     | '/testimonials'
+    | '/reviews/$slug'
   id:
     | '__root__'
     | '/'
@@ -157,6 +168,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/terms'
     | '/testimonials'
+    | '/reviews/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -171,6 +183,7 @@ export interface RootRouteChildren {
   ServicesRoute: typeof ServicesRoute
   TermsRoute: typeof TermsRoute
   TestimonialsRoute: typeof TestimonialsRoute
+  ReviewsSlugRoute: typeof ReviewsSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -252,6 +265,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TestimonialsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reviews/$slug': {
+      id: '/reviews/$slug'
+      path: '/reviews/$slug'
+      fullPath: '/reviews/$slug'
+      preLoaderRoute: typeof ReviewsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -267,17 +287,8 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesRoute: ServicesRoute,
   TermsRoute: TermsRoute,
   TestimonialsRoute: TestimonialsRoute,
+  ReviewsSlugRoute: ReviewsSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
