@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Download, FileText } from "lucide-react";
+import { ChevronDown, Download, Eye, FileText } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { ReviewShowcase } from "@/components/site/ReviewShowcase";
 import { PORTFOLIO, PORTFOLIO_CATEGORIES } from "@/content/site";
@@ -27,6 +27,7 @@ export const Route = createFileRoute("/portfolio")({
 
 function Portfolio() {
   const [filter, setFilter] = useState<string>("All");
+  const [expanded, setExpanded] = useState<string | null>(null);
   const items = filter === "All" ? PORTFOLIO : PORTFOLIO.filter((p) => p.category === filter);
 
   return (
@@ -78,6 +79,42 @@ function Portfolio() {
                 <span className="eyebrow">{p.category}</span>
                 <h2 className="mt-3 text-xl leading-snug">{p.title}</h2>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.blurb}</p>
+
+                {p.preview && (
+                  <div className="mt-4">
+                    <button
+                      type="button"
+                      onClick={() => setExpanded(expanded === p.title ? null : p.title)}
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline"
+                      aria-expanded={expanded === p.title}
+                    >
+                      <Eye className="size-3.5" aria-hidden />
+                      {expanded === p.title ? "Hide preview" : "Read preview"}
+                      <ChevronDown
+                        className={cn(
+                          "size-3.5 transition-transform",
+                          expanded === p.title && "rotate-180",
+                        )}
+                        aria-hidden
+                      />
+                    </button>
+                    <div
+                      className={cn(
+                        "grid transition-all duration-300 ease-out",
+                        expanded === p.title
+                          ? "mt-3 grid-rows-[1fr] opacity-100"
+                          : "grid-rows-[0fr] opacity-0",
+                      )}
+                    >
+                      <div className="overflow-hidden">
+                        <p className="rounded-lg border border-border/60 bg-muted/40 p-4 text-sm leading-relaxed text-muted-foreground">
+                          {p.preview}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 <div className="mt-6 flex items-center justify-between border-t border-border/60 pt-4 text-xs text-muted-foreground">
                   <span>{p.audience}</span>
                   <span className="inline-flex items-center gap-1.5">

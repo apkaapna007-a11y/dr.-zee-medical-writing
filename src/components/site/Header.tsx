@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, Stethoscope } from "lucide-react";
+import { Menu, X, Stethoscope, Sun, Moon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTheme } from "@/hooks/use-theme";
 
 export const NAV = [
   { to: "/", label: "Home" },
@@ -16,6 +17,7 @@ export const NAV = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/50 bg-background/60 backdrop-blur-2xl backdrop-saturate-150">
@@ -41,6 +43,14 @@ export function Header() {
               {item.label}
             </Link>
           ))}
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            className="inline-flex size-9 items-center justify-center rounded-md border border-border transition-colors hover:border-accent"
+          >
+            {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
+          </button>
           <Link
             to="/contact"
             className="glow-cta ml-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground"
@@ -80,6 +90,15 @@ export function Header() {
               {item.label}
             </Link>
           ))}
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            className="mt-2 flex items-center gap-2 rounded-md px-3 py-3 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          >
+            {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
+            {theme === "dark" ? "Light mode" : "Dark mode"}
+          </button>
         </nav>
       </div>
     </header>

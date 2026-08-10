@@ -19,6 +19,41 @@ export const Route = createFileRoute("/services")({
           "Nine physician-led editorial services for healthcare, pharma, CRO and digital health teams.",
       },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            {
+              "@type": "Question",
+              name: "What medical writing services does DrZeeWrites offer?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Nine physician-led services: medical writing, scientific writing, medical reviewing, medical editing, patient education, healthcare SEO content, literature reviews, white papers and drug monographs.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Who writes the content at DrZeeWrites?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "All content is written and reviewed by Dr. Zeeshan Islam, a practising paediatrician (MBBS, MCPS) with intensive care experience.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "What is the typical turnaround for a proposal?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Scoped proposals with a sample approach are delivered within two business days of receiving a brief.",
+              },
+            },
+          ],
+        }),
+      },
+    ],
   }),
   component: Services,
 });

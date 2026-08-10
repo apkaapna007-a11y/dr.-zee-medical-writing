@@ -28,6 +28,55 @@ export const Route = createFileRoute("/")({
           "Physician-authored medical content: manuscripts, white papers, drug monographs, patient education and healthcare SEO.",
       },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          name: "DrZeeWrites",
+          description:
+            "Physician-led medical writing, scientific communication and editorial review for healthcare, pharma, digital health and med-comms teams.",
+          url: "https://drzeewrites.com",
+          email: "hello@drzeewrites.com",
+          founder: {
+            "@type": "Person",
+            name: "Dr. Zeeshan Islam",
+            jobTitle: "Paediatrician & Medical Writer",
+            honorificSuffix: "MBBS, MCPS (Paediatrics)",
+            description:
+              "Practising paediatrician with intensive care experience, specialising in evidence-based medical writing and scientific editing.",
+          },
+          areaServed: "Worldwide",
+          serviceType: [
+            "Medical Writing",
+            "Scientific Writing",
+            "Medical Reviewing",
+            "Medical Editing",
+            "Patient Education",
+            "Healthcare SEO Content",
+            "Literature Reviews",
+            "White Papers",
+            "Drug Monographs",
+          ],
+          hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: "Medical Writing Services",
+            itemListElement: [
+              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Medical Writing" } },
+              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Scientific Writing" } },
+              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Medical Reviewing" } },
+              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Medical Editing" } },
+              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Patient Education" } },
+              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Healthcare SEO Content" } },
+              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Literature Reviews" } },
+              { "@type": "Offer", itemOffered: { "@type": "Service", name: "White Papers" } },
+              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Drug Monographs" } },
+            ],
+          },
+        }),
+      },
+    ],
   }),
   component: Home,
 });

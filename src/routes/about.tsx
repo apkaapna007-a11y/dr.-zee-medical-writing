@@ -18,6 +18,44 @@ export const Route = createFileRoute("/about")({
           "Medical qualifications, clinical experience and the writing philosophy behind DrZeeWrites.",
       },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Dr. Zeeshan Islam",
+          alternateName: "Dr Zee",
+          jobTitle: "Paediatrician & Medical Writer",
+          honorificSuffix: "MBBS, MCPS (Paediatrics)",
+          description:
+            "Practising paediatrician with intensive care experience, specialising in evidence-based medical writing, scientific communication and editorial review.",
+          url: "https://drzeewrites.com/about",
+          knowsAbout: [
+            "Paediatrics",
+            "Paediatric Intensive Care",
+            "Medical Writing",
+            "Scientific Writing",
+            "Medical Reviewing",
+            "Patient Education",
+            "Healthcare SEO",
+            "Evidence-Based Medicine",
+          ],
+          hasCredential: [
+            {
+              "@type": "EducationalOccupationalCredential",
+              credentialCategory: "degree",
+              name: "MBBS — Bachelor of Medicine, Bachelor of Surgery",
+            },
+            {
+              "@type": "EducationalOccupationalCredential",
+              credentialCategory: "certification",
+              name: "MCPS Paediatrics — Member, College of Physicians & Surgeons",
+            },
+          ],
+        }),
+      },
+    ],
   }),
   component: About,
 });

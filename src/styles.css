@@ -137,12 +137,21 @@
     border-color: var(--color-border);
   }
 
+  html {
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
   }
 
   h1,
