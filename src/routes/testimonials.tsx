@@ -17,7 +17,9 @@ export const Route = createFileRoute("/testimonials")({
         property: "og:description",
         content: "Feedback from healthcare, pharma and digital health clients.",
       },
+      { property: "og:image", content: "https://drzeewrites.com/og-testimonials.png" },
     ],
+    links: [{ rel: "canonical", href: "https://drzeewrites.com/testimonials" }],
   }),
   component: Testimonials,
 });

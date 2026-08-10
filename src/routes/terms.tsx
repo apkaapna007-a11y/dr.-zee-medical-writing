@@ -14,6 +14,7 @@ export const Route = createFileRoute("/terms")({
       { property: "og:title", content: "Terms of Use — DrZeeWrites" },
       { property: "og:description", content: "Website terms and medical disclaimer." },
     ],
+    links: [{ rel: "canonical", href: "https://drzeewrites.com/terms" }],
   }),
   component: Terms,
 });

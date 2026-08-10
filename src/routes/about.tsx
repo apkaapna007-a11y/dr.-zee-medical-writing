@@ -17,7 +17,9 @@ export const Route = createFileRoute("/about")({
         content:
           "Medical qualifications, clinical experience and the writing philosophy behind DrZeeWrites.",
       },
+      { property: "og:image", content: "https://drzeewrites.com/og-about.png" },
     ],
+    links: [{ rel: "canonical", href: "https://drzeewrites.com/about" }],
     scripts: [
       {
         type: "application/ld+json",

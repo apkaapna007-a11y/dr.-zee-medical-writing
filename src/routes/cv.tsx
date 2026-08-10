@@ -17,7 +17,9 @@ export const Route = createFileRoute("/cv")({
         property: "og:description",
         content: "Downloadable professional resume covering clinical and editorial experience.",
       },
+      { property: "og:image", content: "https://drzeewrites.com/og-cv.png" },
     ],
+    links: [{ rel: "canonical", href: "https://drzeewrites.com/cv" }],
   }),
   component: CV,
 });

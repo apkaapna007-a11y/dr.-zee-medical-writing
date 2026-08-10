@@ -14,6 +14,7 @@ export const Route = createFileRoute("/privacy")({
       { property: "og:title", content: "Privacy Policy — DrZeeWrites" },
       { property: "og:description", content: "Data handling practices for DrZeeWrites.com." },
     ],
+    links: [{ rel: "canonical", href: "https://drzeewrites.com/privacy" }],
   }),
   component: Privacy,
 });

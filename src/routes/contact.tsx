@@ -18,7 +18,9 @@ export const Route = createFileRoute("/contact")({
         property: "og:description",
         content: "Send a brief and receive a scoped proposal within two business days.",
       },
+      { property: "og:image", content: "https://drzeewrites.com/og-contact.png" },
     ],
+    links: [{ rel: "canonical", href: "https://drzeewrites.com/contact" }],
   }),
   component: Contact,
 });

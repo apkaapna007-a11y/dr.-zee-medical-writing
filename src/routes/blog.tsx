@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { POSTS } from "@/content/site";
 
@@ -16,7 +17,9 @@ export const Route = createFileRoute("/blog")({
         property: "og:description",
         content: "Notes on evidence, plain language and credible healthcare content.",
       },
+      { property: "og:image", content: "https://drzeewrites.com/og-blog.png" },
     ],
+    links: [{ rel: "canonical", href: "https://drzeewrites.com/blog" }],
   }),
   component: Blog,
 });
@@ -39,23 +42,30 @@ function Blog() {
         <div className="grid gap-4 md:grid-cols-3">
           {POSTS.map((p, i) => (
             <Reveal key={p.slug} delay={i * 0.06}>
-              <article className="flex h-full flex-col rounded-xl glass lift p-6">
+              <Link
+                to="/blog/$slug"
+                params={{ slug: p.slug }}
+                className="flex h-full flex-col rounded-xl glass lift p-6"
+              >
                 <span className="eyebrow">{p.tag}</span>
                 <h2 className="mt-3 text-xl leading-snug">{p.title}</h2>
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
                   {p.excerpt}
                 </p>
-                <p className="mt-6 border-t border-border/60 pt-4 text-xs text-muted-foreground">
-                  <time dateTime={p.date}>
-                    {new Date(p.date).toLocaleDateString("en-GB", {
-                      day: "numeric",
-                      month: "short",
-                      year: "numeric",
-                    })}
-                  </time>{" "}
-                  · {p.readingTime} read
-                </p>
-              </article>
+                <div className="mt-6 flex items-center justify-between border-t border-border/60 pt-4">
+                  <p className="text-xs text-muted-foreground">
+                    <time dateTime={p.date}>
+                      {new Date(p.date).toLocaleDateString("en-GB", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })}
+                    </time>{" "}
+                    · {p.readingTime} read
+                  </p>
+                  <ArrowRight className="size-4 text-accent" aria-hidden />
+                </div>
+              </Link>
             </Reveal>
           ))}
         </div>

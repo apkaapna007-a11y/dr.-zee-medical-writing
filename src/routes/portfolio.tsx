@@ -20,10 +20,134 @@ export const Route = createFileRoute("/portfolio")({
         property: "og:description",
         content: "Physician-authored samples across eight medical content categories.",
       },
+      { property: "og:image", content: "https://drzeewrites.com/og-portfolio.png" },
     ],
+    links: [{ rel: "canonical", href: "https://drzeewrites.com/portfolio" }],
   }),
   component: Portfolio,
 });
+
+function renderMarkdown(text: string) {
+  const lines = text.split("\n");
+  const elements: React.ReactNode[] = [];
+  let inTable = false;
+  let tableRows: string[][] = [];
+  let key = 0;
+
+  function flushTable() {
+    if (tableRows.length === 0) return;
+    const headers = tableRows[0];
+    const body = tableRows.slice(2);
+    elements.push(
+      <div key={key++} className="my-4 overflow-x-auto">
+        <table className="w-full border-collapse text-sm">
+          <thead>
+            <tr>
+              {headers.map((h, i) => (
+                <th
+                  key={i}
+                  className="border-b border-border/60 px-3 py-2 text-left font-semibold"
+                >
+                  {h.trim()}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {body.map((row, ri) => (
+              <tr key={ri}>
+                {row.map((cell, ci) => (
+                  <td key={ci} className="border-b border-border/40 px-3 py-2 text-muted-foreground">
+                    {cell.trim()}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>,
+    );
+    tableRows = [];
+    inTable = false;
+  }
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    if (line.startsWith("|")) {
+      inTable = true;
+      const cells = line
+        .split("|")
+        .filter((c) => c.trim() !== "");
+      tableRows.push(cells);
+      continue;
+    }
+
+    if (inTable) flushTable();
+
+    if (line.startsWith("## ")) {
+      elements.push(
+        <h3 key={key++} className="mt-8 mb-3 font-display text-xl leading-snug">
+          {line.replace("## ", "")}
+        </h3>,
+      );
+    } else if (line.startsWith("### ")) {
+      elements.push(
+        <h4 key={key++} className="mt-6 mb-2 text-lg font-semibold">
+          {line.replace("### ", "")}
+        </h4>,
+      );
+    } else if (line.trim() === "") {
+      continue;
+    } else if (line.startsWith("- ")) {
+      const listItems: string[] = [line.replace("- ", "")];
+      while (i + 1 < lines.length && lines[i + 1].startsWith("- ")) {
+        i++;
+        listItems.push(lines[i].replace("- ", ""));
+      }
+      elements.push(
+        <ul key={key++} className="my-3 grid gap-2">
+          {listItems.map((item, j) => (
+            <li key={j} className="flex gap-2 text-sm text-muted-foreground">
+              <span className="mt-2 size-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
+              <span dangerouslySetInnerHTML={{ __html: formatInline(item) }} />
+            </li>
+          ))}
+        </ul>,
+      );
+    } else if (/^\d+\.\s/.test(line)) {
+      const listItems: string[] = [line.replace(/^\d+\.\s/, "")];
+      while (i + 1 < lines.length && /^\d+\.\s/.test(lines[i + 1])) {
+        i++;
+        listItems.push(lines[i].replace(/^\d+\.\s/, ""));
+      }
+      elements.push(
+        <ol key={key++} className="my-3 grid gap-2 list-decimal list-inside">
+          {listItems.map((item, j) => (
+            <li key={j} className="text-sm text-muted-foreground">
+              <span dangerouslySetInnerHTML={{ __html: formatInline(item) }} />
+            </li>
+          ))}
+        </ol>,
+      );
+    } else {
+      elements.push(
+        <p key={key++} className="my-3 text-sm leading-relaxed text-muted-foreground">
+          <span dangerouslySetInnerHTML={{ __html: formatInline(line) }} />
+        </p>,
+      );
+    }
+  }
+
+  if (inTable) flushTable();
+  return elements;
+}
+
+function formatInline(text: string): string {
+  return text
+    .replace(/\*\*(.+?)\*\*/g, '<strong class="text-foreground font-semibold">$1</strong>')
+    .replace(/\*(.+?)\*/g, "<em>$1</em>");
+}
 
 function Portfolio() {
   const [filter, setFilter] = useState<string>("All");
@@ -41,7 +165,7 @@ function Portfolio() {
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
               Full samples and downloadable PDFs are available on request; client work under NDA is
-              described without identifying details.
+              described without identifying details. Select items include a complete, readable sample.
             </p>
           </Reveal>
         </div>
@@ -80,7 +204,7 @@ function Portfolio() {
                 <h2 className="mt-3 text-xl leading-snug">{p.title}</h2>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.blurb}</p>
 
-                {p.preview && (
+                {(p.preview || p.fullContent) && (
                   <div className="mt-4">
                     <button
                       type="button"
@@ -89,7 +213,11 @@ function Portfolio() {
                       aria-expanded={expanded === p.title}
                     >
                       <Eye className="size-3.5" aria-hidden />
-                      {expanded === p.title ? "Hide preview" : "Read preview"}
+                      {expanded === p.title
+                        ? "Hide sample"
+                        : p.fullContent
+                          ? "Read full sample"
+                          : "Read preview"}
                       <ChevronDown
                         className={cn(
                           "size-3.5 transition-transform",
@@ -107,9 +235,15 @@ function Portfolio() {
                       )}
                     >
                       <div className="overflow-hidden">
-                        <p className="rounded-lg border border-border/60 bg-muted/40 p-4 text-sm leading-relaxed text-muted-foreground">
-                          {p.preview}
-                        </p>
+                        {p.fullContent ? (
+                          <div className="rounded-lg border border-border/60 bg-muted/40 p-5">
+                            {renderMarkdown(p.fullContent)}
+                          </div>
+                        ) : (
+                          <p className="rounded-lg border border-border/60 bg-muted/40 p-4 text-sm leading-relaxed text-muted-foreground">
+                            {p.preview}
+                          </p>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -121,6 +255,10 @@ function Portfolio() {
                     {p.category === "Downloadable PDFs" ? (
                       <>
                         <Download className="size-3.5" aria-hidden /> PDF on request
+                      </>
+                    ) : p.fullContent ? (
+                      <>
+                        <FileText className="size-3.5" aria-hidden /> Full sample above
                       </>
                     ) : (
                       <>

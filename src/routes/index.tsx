@@ -9,7 +9,7 @@ import {
   Stethoscope,
 } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
-import { SERVICES, PORTFOLIO, TESTIMONIALS } from "@/content/site";
+import { SERVICES, PORTFOLIO, TESTIMONIALS, POSTS } from "@/content/site";
 import heroAurora from "@/assets/hero-aurora.jpg";
 
 export const Route = createFileRoute("/")({
@@ -27,7 +27,9 @@ export const Route = createFileRoute("/")({
         content:
           "Physician-authored medical content: manuscripts, white papers, drug monographs, patient education and healthcare SEO.",
       },
+      { property: "og:image", content: "https://drzeewrites.com/og-home.png" },
     ],
+    links: [{ rel: "canonical", href: "https://drzeewrites.com/" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -226,6 +228,43 @@ function Home() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="border-y border-border/60 bg-muted/40">
+        <div className="mx-auto max-w-6xl px-5 py-20 md:py-28">
+          <Reveal>
+            <p className="eyebrow">Latest articles</p>
+            <h2 className="mt-3 max-w-2xl text-3xl md:text-4xl">Notes on evidence and editorial practice.</h2>
+          </Reveal>
+          <div className="mt-12 grid gap-4 md:grid-cols-3">
+            {POSTS.map((p, i) => (
+              <Reveal key={p.slug} delay={i * 0.06}>
+                <Link
+                  to="/blog/$slug"
+                  params={{ slug: p.slug }}
+                  className="flex h-full flex-col rounded-xl glass lift p-6"
+                >
+                  <span className="eyebrow">{p.tag}</span>
+                  <h3 className="mt-3 text-lg leading-snug">{p.title}</h3>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+                    {p.excerpt}
+                  </p>
+                  <p className="mt-4 text-xs text-muted-foreground">
+                    {p.readingTime} read
+                  </p>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={0.1}>
+            <Link
+              to="/blog"
+              className="mt-8 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-accent hover:underline"
+            >
+              All articles <ArrowRight className="size-4" />
+            </Link>
+          </Reveal>
         </div>
       </section>
 

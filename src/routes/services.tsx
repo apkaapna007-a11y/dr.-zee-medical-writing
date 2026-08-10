@@ -18,7 +18,9 @@ export const Route = createFileRoute("/services")({
         content:
           "Nine physician-led editorial services for healthcare, pharma, CRO and digital health teams.",
       },
+      { property: "og:image", content: "https://drzeewrites.com/og-services.png" },
     ],
+    links: [{ rel: "canonical", href: "https://drzeewrites.com/services" }],
     scripts: [
       {
         type: "application/ld+json",

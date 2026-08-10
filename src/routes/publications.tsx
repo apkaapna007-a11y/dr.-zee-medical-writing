@@ -16,7 +16,9 @@ export const Route = createFileRoute("/publications")({
         property: "og:description",
         content: "Peer-facing writing and clinical research output from Dr Zee.",
       },
+      { property: "og:image", content: "https://drzeewrites.com/og-publications.png" },
     ],
+    links: [{ rel: "canonical", href: "https://drzeewrites.com/publications" }],
   }),
   component: Publications,
 });
