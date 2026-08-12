@@ -1,78 +1,78 @@
 export const SERVICES = [
   {
-    slug: "medical-writing",
-    title: "Medical Writing",
+    slug: "pediatrics",
+    title: "Pediatric Clinical Writing",
     summary:
-      "Regulatory-adjacent and promotional medical content written by a practising physician — accurate, referenced and audience-calibrated.",
-    deliverables: ["Manuscripts", "Clinical narratives", "Slide decks", "Med-comms copy"],
-  },
-  {
-    slug: "scientific-writing",
-    title: "Scientific Writing",
-    summary:
-      "Structured, journal-ready scientific prose: methods, results and discussion sections that survive peer review.",
-    deliverables: ["Original research", "Review articles", "Abstracts", "Posters"],
-  },
-  {
-    slug: "medical-reviewing",
-    title: "Medical Reviewing",
-    summary:
-      "Independent clinical accuracy review against primary literature and current guidelines, with a documented reference trail.",
-    deliverables: ["Accuracy review", "Guideline check", "Reference verification"],
-  },
-  {
-    slug: "medical-editing",
-    title: "Medical Editing",
-    summary:
-      "Substantive and copy editing that tightens argument, terminology and style without diluting clinical meaning.",
-    deliverables: ["Substantive edit", "Copy edit", "AMA/Vancouver styling"],
+      "Specialised paediatric content bridging evidence-based medicine and clinical practice for hospitals, clinics, and health-tech platforms.",
+    deliverables: ["Clinical guidelines", "Paediatric care pathways", "Growth & development guides", "Subspecialty overviews"],
   },
   {
     slug: "patient-education",
     title: "Patient Education",
     summary:
-      "Plain-language materials written at a controlled reading level, health-literacy tested and empathetic in tone.",
-    deliverables: ["Leaflets", "Condition guides", "Discharge instructions", "App copy"],
+      "Empathetic, health-literacy tested materials written at controlled reading levels to engage families and improve health outcomes.",
+    deliverables: ["Condition leaflets", "Discharge instructions", "Parenting guides", "App microcopy"],
   },
   {
-    slug: "healthcare-seo",
-    title: "Healthcare SEO Content",
+    slug: "hcp-articles",
+    title: "HCP & Clinical Articles",
     summary:
-      "Search-visible clinical content that satisfies E-E-A-T: physician-authored, cited, and structured for featured snippets.",
-    deliverables: ["Pillar pages", "Clinical blogs", "Schema-ready copy"],
+      "Rigorous, peer-referenced articles for physicians, nurses, and allied healthcare professionals covering diagnostics and management.",
+    deliverables: ["CME articles", "Journal roundups", "Clinical reviews", "Conference reports"],
   },
   {
-    slug: "literature-reviews",
-    title: "Literature Reviews",
+    slug: "medical-seo",
+    title: "Medical SEO Writing",
     summary:
-      "Systematic and narrative reviews with transparent search strategy, screening logic and evidence grading.",
-    deliverables: ["Narrative review", "Rapid review", "Evidence tables"],
-  },
-  {
-    slug: "white-papers",
-    title: "White Papers",
-    summary:
-      "Authority assets for pharma, CROs and digital health — commercially aware, scientifically defensible.",
-    deliverables: ["Thought leadership", "Market-facing science", "Executive summaries"],
+      "Search-optimised clinical content built on Google E-E-A-T principles — physician-authored, meticulously cited, and structured for visibility.",
+    deliverables: ["Pillar content", "Clinical blog posts", "FAQ optimization", "Authoritative guides"],
   },
   {
     slug: "drug-monographs",
-    title: "Drug Monographs",
+    title: "Drug & Therapeutics Monographs",
     summary:
-      "Concise, standardised monographs covering pharmacology, dosing, safety and paediatric considerations.",
-    deliverables: ["Monographs", "Formulary summaries", "Prescriber briefs"],
+      "Comprehensive pharmacology, dosing (including paediatric weight-based calculations), adverse profiles, and safety summaries.",
+    deliverables: ["Clinical monographs", "Formulary guides", "Prescriber safety briefs", "Drug comparison tables"],
+  },
+  {
+    slug: "literature-reviews",
+    title: "Literature Reviews & Evidence Syntheses",
+    summary:
+      "Systematic and narrative evidence reviews with transparent search methodology, critical appraisal, and graded evidence tables.",
+    deliverables: ["Narrative reviews", "Rapid evidence syntheses", "Evidence tables", "Critical appraisals"],
+  },
+  {
+    slug: "case-studies",
+    title: "Clinical Case Studies",
+    summary:
+      "Engaging case reports highlighting diagnostic reasoning, differential diagnoses, management steps, and clinical pearls.",
+    deliverables: ["Paediatric case studies", "Diagnostic challenge reports", "Treatment pathways", "Clinical reasoning essays"],
+  },
+  {
+    slug: "white-papers",
+    title: "Healthcare White Papers",
+    summary:
+      "Authoritative thought-leadership documents for health-tech, pharma, and medical societies exploring future healthcare paradigms.",
+    deliverables: ["Industry white papers", "Technology impact reports", "Preventive care strategies", "Executive summaries"],
+  },
+  {
+    slug: "medical-editing",
+    title: "Medical Editing & Review",
+    summary:
+      "Substantive and copy editing by a practising physician ensuring absolute clinical accuracy, AMA/Vancouver styling, and logical flow.",
+    deliverables: ["Clinical accuracy audit", "AMA style editing", "Manuscript polish", "Reference verification"],
   },
 ] as const;
 
 export const PORTFOLIO_CATEGORIES = [
   "Patient Education",
-  "HCP Articles",
-  "Medical Blogs",
-  "White Papers",
+  "HCP / Clinical Articles",
+  "Pediatrics",
+  "SEO Medical Blogs",
   "Drug Monographs",
   "Literature Reviews",
   "Case Studies",
-  "Downloadable PDFs",
+  "White Papers",
 ] as const;
 
 export type PortfolioItem = {
@@ -82,464 +82,523 @@ export type PortfolioItem = {
   blurb: string;
   preview?: string;
   fullContent?: string;
-  file?: string;
 };
 
 export const PORTFOLIO: PortfolioItem[] = [
+  // ==================== 1. PATIENT EDUCATION (4) ====================
   {
-    title: "Fever in the Under-Fives: A Parent's Guide",
+    title: "Fever in Children: What Parents Should Know",
     category: "Patient Education",
-    audience: "Caregivers · Reading level 7",
-    blurb:
-      "Plain-language guidance on antipyretic dosing, red-flag symptoms and when to attend the emergency department.",
-    preview:
-      "A fever in a child under five is one of the most common reasons parents seek medical help. Most fevers are caused by viral infections and resolve within a few days with simple home care. This guide walks caregivers through safe use of paracetamol and ibuprofen (with weight-based dosing tables), how to recognise dehydration, and the specific red-flag signs — lethargy, non-blanching rash, fast breathing, persistent vomiting — that mean 'go to the emergency department now.' The language is calibrated to a Flesch-Kincaid grade 7 reading level, with short sentences, active voice and no jargon without immediate explanation.",
-    fullContent: `## What is a fever?
+    audience: "Parents & Caregivers · Reading Level Grade 7",
+    blurb: "Plain-language guidance on measuring temperature, safe antipyretic dosing by weight, home care strategies, and emergency red flags.",
+    fullContent: `## What is a Fever?
 
-A fever means your child's body temperature is higher than normal. For children under five, a temperature of **38.0 °C (100.4 °F) or above** is a fever. You can check this with a digital thermometer placed under the armpit or in the ear.
+A fever means your child's body temperature is higher than normal. For children under five, a temperature of **38.0 °C (100.4 °F) or above** is considered a fever. You can check this accurately using a digital thermometer placed under the arm or in the ear.
 
-A fever is not a disease. It is a sign that your child's body is fighting an infection — usually a virus. Most fevers in young children are caused by common viral illnesses and get better on their own within two to three days.
+A fever is not a disease in itself. It is a sign that your child's immune system is actively fighting off an infection—most commonly a harmless virus. Most fevers resolve completely within two to three days with simple supportive home care.
 
-## When to give medicine for fever
+## When to Consider Medicine
 
-Fever medicine does not cure the illness. It makes your child more comfortable so they can drink fluids and rest. Give medicine if:
+Fever-reducing medications do not cure the underlying infection. Their main purpose is to make your child more comfortable so they can rest and drink fluids. You should consider giving medicine if:
+- Your child is visibly uncomfortable, irritable, or in pain.
+- Their temperature is above 38.5 °C (101.3 °F).
+- They are refusing fluids due to discomfort.
 
-- Your child seems uncomfortable, upset or in pain
-- Their temperature is above 38.5 °C (101.3 °F)
-- They are not drinking well
+**You do not need to medicate a fever simply because the thermometer number is high.** If your child is alert, smiling, and drinking well, you can safely monitor them without medication.
 
-**You do not need to give fever medicine just because the number on the thermometer is high.** If your child is playing, drinking and seems comfortable, you can watch and wait.
+## Weight-Based Dosing Guidelines
 
-## Safe doses of paracetamol and ibuprofen
+Always calculate doses based on your child's **weight in kilograms**, not their age.
+- **Paracetamol (Acetaminophen):** 15 mg/kg per dose, every 4 to 6 hours as needed (maximum 4 doses in 24 hours).
+- **Ibuprofen:** 10 mg/kg per dose, every 6 to 8 hours as needed (maximum 3 doses in 24 hours; do not give if dehydrated or under 3 months).
 
-The dose depends on your child's **weight**, not their age. Check the bottle for the concentration (how many milligrams are in each 5 mL of liquid).
+## Emergency Red Flags
 
-**Paracetamol (acetaminophen):**
-- Dose: 15 mg per kg of body weight
-- Give every 4 to 6 hours as needed
-- Maximum 4 doses in 24 hours
-
-**Ibuprofen:**
-- Dose: 10 mg per kg of body weight
-- Give every 6 to 8 hours as needed
-- Maximum 3 doses in 24 hours
-- Do not give if your child is dehydrated or has kidney problems
-
-**Example:** If your child weighs 10 kg, the paracetamol dose is 150 mg (10 × 15). If your syrup is 120 mg per 5 mL, you would give about 6 mL.
-
-Never give aspirin to a child under 16 years.
-
-## How to care for your child at home
-
-- **Fluids:** Offer small, frequent drinks. Breast milk, formula, water or oral rehydration solution are all good. Watch for signs of dehydration: fewer wet nappies, dry mouth, no tears when crying, sunken eyes.
-- **Clothing:** Dress your child in light clothing. Do not bundle them in extra layers — this traps heat.
-- **Room temperature:** Keep the room comfortable, around 20–22 °C (68–72 °F).
-- **Rest:** Let your child rest as much as they need. They do not need to stay in bed if they feel like moving.
-- **Food:** Do not force food. Fluids are more important. Appetite usually returns as the fever settles.
-
-**Things that do not help and should not be used:** cold baths, ice packs, rubbing alcohol on the skin, or fan-cooling. These can make your child shiver, which raises body temperature further.
-
-## Red flags: when to go to the emergency department
-
-Take your child to the nearest emergency department **now** if any of these are present:
-
-| Sign | What to look for |
-|------|-----------------|
-| **Very sleepy or hard to wake** | Your child does not respond normally, will not make eye contact, or seems confused |
-| **Rash that does not fade** | Press a clear glass against the rash — if it does not fade under pressure, this is urgent |
-| **Fast or difficult breathing** | Breathing much faster than normal, grunting, chest pulling in, or blue colour around the lips |
-| **Stiff neck** | Your child cannot bend their chin to their chest or cries when you try |
-| **Seizure (fit)** | Jerking movements, staring blankly, or becoming floppy — call emergency services if this lasts more than 5 minutes |
-| **Persistent vomiting** | Cannot keep any fluids down, or vomiting continues for more than 8 hours |
-| **Signs of dehydration** | No wet nappy in 8 hours, very dry mouth, no tears, sunken eyes or soft spot on the head |
-| **Age under 3 months** | Any fever of 38.0 °C or above in a baby under 3 months needs urgent medical assessment |
-
-## When to see your doctor (non-urgent)
-
-Contact your doctor within 24 hours if:
-
-- The fever lasts more than 3 days
-- Your child seems to be getting worse after initially improving
-- You are worried for any reason you cannot explain
-- Your child has a chronic medical condition or weakened immune system
-
-## What to expect
-
-Most viral fevers last 2 to 3 days. The temperature may go up and down during this time — this is normal. The fever pattern does not tell you how serious the illness is. A child with a high temperature who is otherwise alert and drinking is usually less concerning than a child with a low temperature who is very lethargic.
-
-Trust your instincts. If you feel something is wrong, seek medical advice — even if the thermometer says the fever has come down.`,
+Seek emergency medical evaluation immediately if you observe any of the following:
+| Symptom | What to Look For |
+|---|---|
+| **Breathing Difficulty** | Breathing much faster than normal, chest pulling in, or grunting |
+| **Non-Blanching Rash** | A rash that does not fade when pressed with a clear glass |
+| **Extreme Lethargy** | Unusually sleepy, difficult to wake up, or unresponsive |
+| **Signs of Dehydration** | No wet diaper for 8 hours, dry mouth, no tears when crying |
+| **Neurological Signs** | Stiff neck, severe headache, or a seizure lasting over 5 minutes |
+| **Infant Age** | Any fever of 38.0 °C or higher in an infant under 3 months old |`
   },
   {
-    title: "Bronchiolitis Management: What the Evidence Supports",
-    category: "HCP Articles",
-    audience: "Paediatricians · Primary care",
-    blurb:
-      "Critical appraisal of supportive care, high-flow oxygen and the evidence against routine bronchodilators.",
-    preview:
-      "Bronchiolitis remains the single largest cause of infant hospitalisation in the winter months, yet practice variation persists — particularly around bronchodilators, nebulised hypertonic saline and the threshold for high-flow nasal cannula. This article for a paediatric audience walks through the 2023 AAP guideline alongside the latest PIC data, separating what is supported (suctioning, hydration, HFNC in moderate-severe cases) from what is not (routine salbutamol, systemic corticosteroids, chest physiotherapy). A disposition table maps severity markers to ward vs. PICU admission criteria.",
-    fullContent: `## Scope and burden
+    title: "10 Warning Signs That Your Baby May Be Seriously Ill",
+    category: "Patient Education",
+    audience: "New Parents · Reading Level Grade 6",
+    blurb: "An essential checklist for parents to distinguish between common infant fussiness and critical red flags requiring urgent medical care.",
+    fullContent: `## Navigating Infant Health Concerns
 
-Bronchiolitis accounts for approximately 1 in 3 hospital admissions in infants during peak winter months in temperate climates. In children under 12 months, it is the single largest cause of respiratory hospitalisation. Most cases are viral — respiratory syncytial virus (RSV) accounts for 60–80% of admissions — and the disease course is typically self-limiting, but the volume of admissions, the variability in practice and the ongoing debate about interventions make it a high-yield topic for evidence-based review.
+Babies communicate primarily through crying, feeding patterns, and subtle behavioral cues. For new parents, discerning normal fussiness from signs of serious illness can be challenging. This guide outlines ten critical clinical warning signs in infants.
 
-This article summarises the current evidence base, aligned with the 2023 AAP Clinical Practice Guideline and supplemented by recent systematic reviews and pragmatic trials published through 2026.
+### The Top 10 Red Flags
+1. **Extreme Lethargy:** Difficulty waking up, poor muscle tone (floppy), or lack of eye contact.
+2. **Persistent Inconsolable Crying:** A continuous, high-pitched cry that cannot be soothed by feeding or holding.
+3. **Respiratory Distress:** Tachypnoea (over 60 breaths/min), nasal flaring, chest retractions, or grunting.
+4. **Abnormal Skin Color:** Pale, mottled, blue (cyanotic), or ashen skin tone.
+5. **Fever in Neonates:** Any rectal temperature above 38.0 °C in an infant younger than 3 months.
+6. **Dehydration Indicators:** Sunken fontanelle, dry mucous membranes, absence of tears, and fewer than 4 wet diapers in 24 hours.
+7. **Persistent Vomiting:** Forceful (projectile) vomiting or green/bilious emesis.
+8. **Bulging Fontanelle:** The soft spot on the head appearing tense or bulging while the baby is upright.
+9. **Seizures or Spasms:** Brief unresponsiveness, rhythmic twitching, or sudden stiffening.
+10. **Refusing All Feeds:** Inability to nurse or take bottle feeds for more than two consecutive feeding cycles.
 
-## Diagnosis
-
-Bronchiolitis is a clinical diagnosis. The hallmark is a first episode of wheeze and/or crackles in a child under 24 months, preceded by 2–3 days of upper respiratory symptoms (rhinorrhoea, cough, low-grade fever). The AAP guideline recommends against routine chest X-ray, blood gas or viral testing in typical presentations, as these do not change management and may lead to unnecessary interventions.
-
-**Key diagnostic considerations:**
-- Age of onset: first episode before 24 months
-- Seasonality: winter/early spring in temperate climates
-- Progression: symptoms peak on days 3–5, then gradually improve over 7–14 days
-- Differential: asthma (rare under 12 months), pertussis, foreign body aspiration, cardiac failure, cystic fibrosis
-
-## What the evidence supports
-
-### Nasopharyngeal suctioning
-Clearing the upper airway before feeds and sleep is the most consistently supported intervention. Deep suctioning is not recommended — gentle bulb or mechanical suction of the nares is sufficient. Evidence quality: moderate.
-
-### Hydration
-Dehydration is the most common complication. Oral or nasogastric fluids are appropriate for mild-moderate disease. IV fluids are indicated when oral/NG intake is inadequate or the child is in significant distress. Monitoring input/output and weight is essential.
-
-### Oxygen supplementation
-Supplemental oxygen is indicated for SpO₂ persistently below 90–92% (threshold varies by guideline). Continuous SpO₂ monitoring is not recommended once the child is stable and maintaining saturations in air, as this prolongs hospital stay without improving outcomes (Sanz et al., 2023).
-
-### High-flow nasal cannula (HFNC)
-HFNC (heated, humidified high-flow therapy) has emerged as the most significant change in bronchiolitis management over the past five years. The 2023 AAP guideline gives HFNC a moderate-strength recommendation for moderate-to-severe bronchiolitis. Recent RCTs (RCT-REFLOW, 2024; PIC-TRIAL, 2025) demonstrate:
-- Reduced intubation rates in moderate-severe cases (NNT ~12)
-- Reduced work of breathing within 1–2 hours of initiation
-- No significant difference in time to readiness for discharge compared with standard oxygen therapy in mild cases
-
-**Practical threshold:** HFNC is most appropriate when the child has moderate respiratory distress (Recessions Score ≥5, RR >60 in infants, significant feeding difficulty) despite standard oxygen therapy. It is not indicated for mild disease.
-
-### Disposition criteria
-
-| Severity | Clinical features | Disposition |
-|----------|------------------|-------------|
-| **Mild** | SpO₂ ≥92% in air, minimal recessions, feeding >50% normal | Home with safety-netting if reliable follow-up |
-| **Moderate** | SpO₂ 90–92%, moderate recessions, feeding 25–50% | Ward admission; consider HFNC if not improving |
-| **Severe** | SpO₂ <90% despite oxygen, severe recessions, apnoea, feeding <25% | Ward or PICU depending on response to initial therapy |
-| **Critical** | Apnoea, impending respiratory failure, shock | PICU admission; consider intubation |
-
-## What the evidence does NOT support
-
-### Routine bronchodilators (salbutamol)
-The AAP guideline recommends **against** a trial of bronchodilators in bronchiolitis. Multiple systematic reviews (Cochrane 2022, updated 2024) confirm no meaningful reduction in admission rates, length of stay or disease severity. A small subset of children with personal or family history of atopy may benefit from a single supervised trial — but this should be assessed objectively (change in work of breathing, not just wheeze) and discontinued if there is no measurable response.
-
-### Systemic corticosteroids
-No benefit has been demonstrated in bronchiolitis across multiple RCTs and meta-analyses. Corticosteroids do not reduce admission rates, length of stay or time to resolution. They are not recommended.
-
-### Nebulised hypertonic saline
-The evidence is mixed. The 2023 AAP guideline gives a weak recommendation for nebulised hypertonic saline (3%) in hospitalised infants, based on a modest reduction in length of stay (approximately 0.5 days) in some studies. However, more recent pragmatic trials (2024–2025) have not replicated this benefit. It may be considered in hospitalised infants beyond the first 24 hours, but it should not be used in the emergency department to avoid admission.
-
-### Chest physiotherapy
-No benefit has been demonstrated. Chest physiotherapy is not recommended.
-
-### Antibiotics
-Bronchiolitis is a viral illness. Antibiotics are not indicated unless there is a concurrent bacterial infection (e.g., confirmed UTI, bacterial pneumonia). Co-existing bacterial infection occurs in <5% of bronchiolitis admissions.
-
-## Areas of ongoing uncertainty
-
-- **RSV prophylaxis (nirsevimab):** The monoclonal antibody nirsevimab has transformed RSV prevention in high-income settings, but its impact on bronchiolitis admission rates at a population level is still being evaluated. Early data (2025–2026) suggest a 30–40% reduction in RSV-related admissions in eligible infants.
-- **HFNC weaning protocols:** No consensus exists on optimal weaning. Most centres reduce flow by 2 L/min every 4–12 hours based on clinical response, but this is not evidence-based.
-- **Biomarkers:** No blood biomarker reliably distinguishes viral bronchiolitis from early bacterial respiratory infection in infants. Research is ongoing.
-
-## References
-1. AAP Clinical Practice Guideline: Diagnosis, Management, and Prevention of Bronchiolitis (2023 update). *Pediatrics.* 2023;151(1).
-2. Cochrane Review: Bronchodilators for acute viral bronchiolitis in children under 2 years. Updated 2024.
-3. Sanz N, et al. Continuous vs. discontinuous oxygen monitoring in bronchiolitis: a multicentre RCT. *Lancet Respir Med.* 2023;11(4):312–321.
-4. RCT-REFLOW Investigators. High-flow nasal cannula vs. standard oxygen in moderate-severe bronchiolitis. *NEJM.* 2024;390(8):701–711.
-5. PIC-TRIAL Group. Pragmatic trial of HFNC in infant bronchiolitis across 42 centres. *JAMA Pediatr.* 2025;179(2):145–155.`,
+### Trust Your Instincts
+If your baby simply does not look right to you, trust your parental intuition and seek medical advice immediately.`
   },
   {
-    title: "Paediatric Sepsis Recognition in the First Hour",
-    category: "Case Studies",
-    audience: "PICU · Emergency teams",
-    blurb:
-      "A de-identified clinical narrative tracing recognition, fluid strategy and escalation decisions.",
-    preview:
-      "A 3-year-old presents to the emergency department with a 24-hour history of fever and increasing lethargy. Initial vitals show tachycardia, prolonged capillary refill time and a lactate of 3.8 mmol/L. This case study traces the first 60 minutes of care: the recognition of compensated shock, the fluid bolus strategy (20 mL/kg isotonic crystalloid, reassessment after each aliquot), the decision to start broad-spectrum antibiotics within 30 minutes, and the escalation to PICU when perfusion did not normalise. De-identified and used here with permission to illustrate clinical reasoning under time pressure.",
+    title: "A Parent's Guide to Childhood Asthma",
+    category: "Patient Education",
+    audience: "Families & Caregivers · Reading Level Grade 7",
+    blurb: "Comprehensive handbook on recognizing asthma triggers, understanding controller vs. reliever inhalers, and managing acute flare-ups.",
+    fullContent: `## Understanding Childhood Asthma
+
+Asthma is a chronic inflammatory condition affecting the airways, causing them to narrow, swell, and produce excess mucus. This results in recurrent episodes of wheezing, coughing, chest tightness, and shortness of breath.
+
+### Controller vs. Reliever Medications
+- **Relievers (Rescue Inhalers):** Fast-acting bronchodilators (e.g., salbutamol) used during acute symptoms to open airways rapidly.
+- **Controllers (Preventer Inhalers):** Daily anti-inflammatory medications (e.g., low-dose inhaled corticosteroids) that prevent airway inflammation and reduce chronic hyper-responsiveness.
+
+### Common Environmental Triggers
+Viral respiratory infections, tobacco smoke, dust mites, pollen, pet dander, cold air, and vigorous physical activity can trigger asthma symptoms. Environmental mitigation at home is essential for maintaining control.`
   },
   {
-    title: "Salbutamol: Paediatric Drug Monograph",
+    title: "Childhood Vaccines: A Practical Guide for Parents",
+    category: "Patient Education",
+    audience: "Parents & Expectant Mothers · Reading Level Grade 7",
+    blurb: "Evidence-based overview of immunisation schedules, vaccine safety, immunology basics, and how vaccines protect communities.",
+    preview: "Childhood immunisation is one of the greatest triumphs of modern medicine, saving millions of lives globally. This guide addresses common parental questions about vaccine safety, adjuvants, herd immunity, and the science behind how vaccines safely train the developing immune system.",
+    fullContent: `## How Vaccines Train the Immune System
+
+Vaccines introduce inactivated or attenuated antigens into the body, safely stimulating the immune system to produce antibodies and memory cells without causing disease. When exposed to the pathogen later, the immune system responds swiftly.
+
+### Safety and Rigorous Testing
+Vaccines undergo rigorous preclinical and clinical testing before approval and continuous post-marketing surveillance. Decades of robust global research confirm that vaccines do not cause autism or overwhelm the immune system.
+
+### Community Protection
+Maintaining high vaccination coverage establishes herd immunity, protecting vulnerable infants who are too young to receive specific immunisations.`
+  },
+
+  // ==================== 2. HCP / CLINICAL ARTICLES (4) ====================
+  {
+    title: "Approach to Fever Without a Source in Children",
+    category: "HCP / Clinical Articles",
+    audience: "Paediatricians & Emergency Physicians",
+    blurb: "Evidence-based clinical review of risk stratification, diagnostic algorithms, and management of febrile infants and children.",
+    fullContent: `## Clinical Definition and Diagnostic Challenge
+
+Fever without a source (FWS) in children aged 0 to 36 months remains a central diagnostic challenge. The primary objective is identifying invasive bacterial infections (IBI)—such as urinary tract infection (UTI), bacteraemia, and bacterial meningitis—while avoiding unnecessary invasive testing and antimicrobial exposure in low-risk patients.
+
+### Age-Based Stratification Protocols
+1. **Neonates (<28 days):** Mandatory full septic workup (blood culture, urinalysis/culture, cerebrospinal fluid analysis and culture) paired with empirical parenteral broad-spectrum antibiotics (ampicillin and gentamicin or cefotaxime).
+2. **Infants 29–60 days:** Evaluated using standardized risk criteria (Rochester, Philadelphia, or step-by-step algorithms incorporating procalcitonin, C-reactive protein, and urinalysis) to guide lumbar puncture and hospital admission.
+3. **Children 3–36 months:** Widespread conjugate vaccination has dramatically reduced occult Streptococcus pneumoniae bacteraemia. Urinalysis is recommended for febrile girls under 24 months and uncircumcised boys under 12 months.`
+  },
+  {
+    title: "Evaluation and Management of Acute Bronchiolitis in Infants",
+    category: "HCP / Clinical Articles",
+    audience: "Clinicians & Hospitalists",
+    blurb: "Critique of current AAP guidelines, supportive care protocols, high-flow nasal cannula (HFNC) indications, and inappropriate therapies.",
+    fullContent: `## Pathophysiology and Evidence-Based Management
+
+Acute bronchiolitis is characterised by inflammation, epithelial necrosis, and oedema of the small airways, most frequently caused by respiratory syncytial virus (RSV).
+
+### Supported Interventions vs. Inappropriate Care
+- **Supportive Care:** Nasopharyngeal suctioning and maintenance of hydration are cornerstone therapies.
+- **High-Flow Nasal Cannula (HFNC):** Recommended for moderate-to-severe respiratory distress failing standard oxygen therapy, significantly reducing intubation rates.
+- **Unsupported Therapies:** Routine bronchodilators (salbutamol), systemic corticosteroids, nebulised hypertonic saline, and chest physiotherapy lack consistent evidence and are discouraged by international guidelines.`
+  },
+  {
+    title: "Approach to Pediatric Dehydration",
+    category: "HCP / Clinical Articles",
+    audience: "Emergency Medicine & Primary Care",
+    blurb: "Assessment of clinical deficit scales, selection of oral rehydration therapy (ORT) vs. IV fluids, and electrolyte management.",
+    fullContent: `## Assessing Clinical Deficits
+
+Paediatric dehydration secondary to acute gastroenteritis requires precise clinical assessment of fluid deficit percentage using validated clinical scoring systems (e.g., Gorelick scale evaluating general appearance, eyes, mucous membranes, and skin turgor).
+
+### Rehydration Strategies
+- **Mild-to-Moderate Dehydration:** Oral Rehydration Therapy (ORT) using low-osmolarity oral rehydration solution administered in frequent small aliquots (5 mL every 1–2 minutes) is superior to intravenous therapy.
+- **Severe Dehydration / Shock:** Immediate vascular access (peripheral IV or intraosseous) and rapid infusion of isotonic crystalloid boluses (10–20 mL/kg), titrated against clinical perfusion.`
+  },
+  {
+    title: "Recognition and Initial Management of Pediatric Sepsis",
+    category: "HCP / Clinical Articles",
+    audience: "Paediatric ICU & Emergency Clinicians",
+    blurb: "Implementation of the Surviving Sepsis Campaign guidelines, early recognition bundles, vascular access, and fluid resuscitation.",
+    fullContent: `## Time-Critical Resuscitation
+
+Paediatric sepsis is a medical emergency where delays in recognition and antimicrobial administration increase mortality. Early physiological indicators include tachycardia out of proportion to fever, altered mental status, prolonged capillary refill, and abnormal peripheral pulses.
+
+### The Golden Hour Bundle
+1. Establish vascular access within 15 minutes (utilising intraosseous access if IV fails within 90 seconds) and obtain blood cultures.
+2. Administer broad-spectrum intravenous antimicrobials within 30 minutes.
+3. Initiate goal-directed fluid resuscitation (10–20 mL/kg isotonic crystalloids) and commence inotropic support (epinephrine or norepinephrine) for fluid-refractory shock.`
+  },
+
+  // ==================== 3. PEDIATRICS (4) ====================
+  {
+    title: "WHO Growth Charts Explained: Weight, Height and BMI in Children",
+    category: "Pediatrics",
+    audience: "Paediatricians & Allied Health Professionals",
+    blurb: "Detailed analysis of World Health Organization growth standards, z-scores, velocity curves, and screening for growth faltering.",
+    fullContent: `## Standardised Growth Monitoring
+
+The WHO growth standards (0–5 years) and references (5–19 years) establish normative growth trajectories based on optimal international cohorts. Growth monitoring evaluates nutritional status and detects early systemic pathology.
+
+### Centiles and Z-Scores
+Clinical evaluation relies on z-scores rather than static centile lines:
+- **Stunting:** Height-for-age z-score < -2.
+- **Wasting:** Weight-for-height z-score < -2.
+- **Overweight/Obesity:** BMI-for-age > +2 and > +3 z-scores respectively.
+Longitudinal velocity tracking remains more diagnostically sensitive than single cross-sectional measurements.`
+  },
+  {
+    title: "Failure to Thrive in Children: Clinical Approach",
+    category: "Pediatrics",
+    audience: "Paediatricians & Nutritionists",
+    blurb: "Differential diagnosis of faltering growth, organic vs. non-organic causes, nutritional rehabilitation, and multidisciplinary management.",
+    fullContent: `## Defining Faltering Growth
+
+Failure to thrive (FTT) describes infants and children exhibiting suboptimal weight gain crossing two major centile lines downward.
+
+### Diagnostic Categorisation
+- **Non-Organic Causes:** Inadequate caloric intake due to poverty, maternal depression, improper formula dilution, or feeding dynamics.
+- **Organic Causes:** Gastroesophageal reflux, celiac disease, cystic fibrosis, congenital heart disease, or chronic renal insufficiency.`
+  },
+  {
+    title: "Common Pediatric Emergencies: Recognition of Red Flags",
+    category: "Pediatrics",
+    audience: "Emergency Nurses & Paediatric Residents",
+    blurb: "Rapid triage protocols for acute paediatric emergencies including anaphylaxis, status epilepticus, acute poisoning, and upper airway obstruction.",
+    fullContent: `## The Paediatric Assessment Triangle (PAT)
+
+The PAT allows rapid, non-touch physiological evaluation across three domains: Appearance, Work of Breathing, and Circulation to Skin.
+
+### Core Emergency Management
+- **Anaphylaxis:** Immediate intramuscular adrenaline (0.01 mg/kg, max 0.5 mg) into the anterolateral thigh.
+- **Status Epilepticus:** Benzodiazepines (IV/IO lorazepam or diazepam) as first-line therapy, progressing to second-line agents if seizures persist beyond 5 minutes.`
+  },
+  {
+    title: "Pediatric Nutrition: Assessment and Management of Malnutrition",
+    category: "Pediatrics",
+    audience: "Paediatric Gastroenterologists & Clinical Dietitians",
+    blurb: "Comprehensive review of protein-energy malnutrition (marasmus and kwashiorkor), micronutrient deficiencies, and therapeutic feeding protocols.",
+    fullContent: `## Classification and Staged Rehabilitation
+
+Severe Acute Malnutrition (SAM) is defined by weight-for-height z-score < -3, MUAC < 115 mm, or bilateral pitting oedema.
+
+### WHO Staged Management
+1. **Stabilisation Phase:** Address hypoglycaemia, hypothermia, and electrolyte imbalance using F-75 therapeutic formula.
+2. **Rehabilitation Phase:** Transition to F-100 or Ready-to-Use Therapeutic Food (RUTF) to achieve rapid catch-up growth.`
+  },
+
+  // ==================== 4. SEO MEDICAL BLOGS (4) ====================
+  {
+    title: "Why Does My Child Have a Cough at Night?",
+    category: "SEO Medical Blogs",
+    audience: "Parents Searching Online · SEO Health Content",
+    blurb: "Search-optimised clinical blog post exploring nocturnal cough triggers in children, post-nasal drip, asthma, and when to seek care.",
+    fullContent: `## The Physiology of Nocturnal Coughing
+
+Nighttime coughing is one of the most frequent reasons parents lose sleep. When a child lies flat, upper airway mucus pools in the pharynx, triggering cough receptors. Furthermore, normal nocturnal drops in cortisol and cooler bedroom air increase airway resistance.
+
+### Common Clinical Culprits
+- **Post-Nasal Drip:** Secondary to viral upper respiratory infections or allergic rhinitis.
+- **Asthma:** Bronchospasm provoked by cool air and allergen accumulation in bedding.
+- **Environmental Dryness:** Inadequate indoor humidity irritating inflamed mucosa.`
+  },
+  {
+    title: "Baby Teething Symptoms: What Is Normal and What Isn't?",
+    category: "SEO Medical Blogs",
+    audience: "New Parents · Health Search",
+    blurb: "Evidence-based SEO article separating normal teething signs (drooling, gum soreness) from red flags like high fever and diarrhoea.",
+    fullContent: `## Separating Fact From Fiction in Teething
+
+Teething is a normal developmental milestone starting around 6 months. While mild gum discomfort and increased drooling are expected, attributing systemic illnesses to teething can delay critical diagnoses.
+
+### What Is Normal vs. Abnormal
+- **Normal:** Mild gum tenderness, excessive mouthing, disrupted sleep, mild irritability.
+- **Abnormal (Not Teething):** High fever (>38.5 °C), persistent vomiting, diarrhoea, and lethargy. These warrant investigation for acute infections such as otitis media or urinary tract infection.`
+  },
+  {
+    title: "Why Does My Child Keep Getting Fevers?",
+    category: "SEO Medical Blogs",
+    audience: "Parents & Families · Search-Optimised",
+    blurb: "Reassuring, physician-reviewed guide explaining recurrent viral infections in nursery school children and immune system development.",
+    fullContent: `## The Daycare Infection Cycle
+
+Parents often worry when toddlers in nursery school experience 6 to 8 viral infections annually. Each self-limiting viral illness contributes to adaptive immune system maturation.
+
+### When to Consult an Immunologist
+While frequent viral fevers are normal, recurrent severe bacterial infections, chronic fungal infections, or failure to thrive warrant screening for primary immunodeficiencies.`
+  },
+  {
+    title: "When Should Parents Take a Child to the Emergency Room?",
+    category: "SEO Medical Blogs",
+    audience: "General Public · Emergency Health",
+    blurb: "Clear, authoritative triage guide helping parents make calm, rapid decisions during paediatric medical emergencies.",
+    fullContent: `## Triage Guidance for Parents
+
+Knowing when an illness requires emergency department (ED) evaluation reduces anxiety and ensures timely care.
+
+### Definitive Emergency Indicators
+- **Respiratory:** Severe chest retractions, cyanosis, stridor at rest.
+- **Neurological:** Unresponsiveness, lethargy, new seizures, acute confusion.
+- **Trauma:** Head injury with vomiting, suspected fractures, severe burns.
+- **Gastrointestinal:** Bilious vomiting, severe abdominal pain, bloody stools.`
+  },
+
+  // ==================== 5. DRUG MONOGRAPHS (2) ====================
+  {
+    title: "Amoxicillin: Clinical Drug Monograph",
     category: "Drug Monographs",
-    audience: "Formulary committees",
-    blurb:
-      "Pharmacology, weight-based dosing, adverse effects and monitoring, referenced to current formularies.",
-    preview:
-      "A standardised monograph covering salbutamol (albuterol) for paediatric use: mechanism of action (β₂-adrenergic agonism), pharmacokinetics specific to children, weight-based dosing tables for nebulised, MDI and IV routes, adverse effect profile (tachycardia, tremor, hypokalaemia), drug interactions and monitoring parameters. Special sections cover use in children under 2 years, dose adjustment in hepatic impairment, and storage requirements. Referenced to the WHO Model Formulary for Children, BNFC and current institutional formularies.",
+    audience: "Pharmacists, Physicians & Medical Writers",
+    blurb: "Comprehensive pharmacological monograph covering mechanism of action, paediatric dosing tables, adverse reactions, and antimicrobial stewardship.",
+    fullContent: `## Pharmacology and Clinical Dosing
+
+Amoxicillin is an aminopenicillin inhibiting bacterial cell wall synthesis via penicillin-binding protein (PBP) binding.
+
+### Paediatric Regimens
+- **Acute Otitis Media:** High-dose regimen of 80–90 mg/kg/day divided BID to overcome penicillin-resistant Streptococcus pneumoniae.
+- **Streptococcal Pharyngitis:** 50 mg/kg once daily (or 25 mg/kg BID) for 10 days.
+
+### Adverse Profile
+Common adverse events include gastrointestinal upset and non-allergic maculopapular rash. Contraindicated in immediate beta-lactam hypersensitivity.`
   },
   {
-    title: "Digital Therapeutics in Childhood Asthma",
-    category: "White Papers",
-    audience: "Digital health · Investors",
-    blurb:
-      "Market and evidence landscape for connected inhalers, adherence data and regulatory pathways.",
-    preview:
-      "Childhood asthma affects over 14 million children in the US alone, and medication adherence remains below 50% in most populations. This white paper maps the digital therapeutics landscape for paediatric asthma — connected inhalers with usage tracking, app-based symptom diaries, AI-driven exacerbation prediction — against the clinical evidence for adherence improvement and the regulatory pathways (FDA SaMD, CE marking) that digital health companies must navigate. Commercial analysis includes reimbursement codes, payer landscape and competitive positioning.",
+    title: "Ibuprofen: Clinical Drug Monograph",
+    category: "Drug Monographs",
+    audience: "Clinical Pharmacologists & Prescribers",
+    blurb: "Standardised monograph detailing NSAID pharmacology, COX inhibition, paediatric antipyretic/analgesic dosing, and renal safety.",
+    fullContent: `## Mechanism and Pharmacokinetics
+
+Ibuprofen inhibits cyclooxygenase (COX-1 and COX-2) enzymes, decreasing prostaglandin synthesis. Rapidly absorbed orally with peak plasma levels in 1–2 hours.
+
+### Paediatric Dosing & Safety
+- **Dose:** 10 mg/kg per dose orally every 6 to 8 hours (max 40 mg/kg/day).
+- **Contraindications:** Infants under 3 months, active GI bleeding, hypersensitivity, and dehydration due to risk of pre-renal acute kidney injury.`
   },
+
+  // ==================== 6. LITERATURE REVIEWS (2) ====================
   {
-    title: "Vitamin D Supplementation in Infancy: Narrative Review",
+    title: "Vitamin D Supplementation in Children: An Evidence-Based Review",
     category: "Literature Reviews",
-    audience: "Clinical audience",
-    blurb:
-      "Transparent search strategy across 42 sources with an evidence table and practice implications.",
-    preview:
-      "A narrative review synthesising 42 primary sources (systematic reviews, RCTs and position statements from 2020–2026) on vitamin D supplementation in infants and young children. The review covers rickets prevention, bone mineral density outcomes, respiratory infection reduction and immune modulation. A transparent search strategy (PubMed, Cochrane, WHO guidelines) is documented, with inclusion/exclusion criteria. An evidence table grades each source by study design, sample size and effect magnitude. Practice implications reconcile divergent recommendations from AAP, ESPGHAN and WHO into a single dosing framework.",
+    audience: "Academic Researchers & Paediatricians",
+    blurb: "Critical synthesis of recent clinical trials examining vitamin D requirements, rickets prevention, immune modulation, and supplementation guidelines.",
+    fullContent: `## Evidence Synthesis on Skeletal and Immune Health
+
+Vitamin D deficiency remains a global health concern linked to nutritional rickets and impaired mineralisation.
+
+### Clinical Findings
+Randomised controlled trials confirm universal supplementation (400 IU/day) in exclusively breastfed infants prevents rickets. Emerging evidence also suggests potential immunomodulatory benefits in reducing acute respiratory infections in deficient populations.`
   },
   {
-    title: "Antibiotic Stewardship for Paediatric Practices",
-    category: "Medical Blogs",
-    audience: "Clinic marketing · SEO",
-    blurb:
-      "Search-optimised, physician-authored article balancing E-E-A-T signals with genuine clinical depth.",
-    preview:
-      "An SEO-optimised article targeting 'paediatric antibiotic stewardship' and related queries, structured for featured snippets with a clear definition section, a 'when antibiotics are (and aren't) needed' comparison table, and parent-facing FAQs. The article satisfies E-E-A-T requirements through physician authorship, citation of AAP and IDSA guidelines, and transparent discussion of evidence limitations. Word count: 1,800. Schema markup for FAQ and HowTo structured data is included in the page template.",
-    fullContent: `## What is paediatric antibiotic stewardship?
+    title: "Probiotics in Pediatric Gastrointestinal Disorders: Current Evidence",
+    category: "Literature Reviews",
+    audience: "Gastroenterologists & Academic Writers",
+    blurb: "Evidence-based appraisal of probiotic strains (Lactobacillus rhamnosus GG, Saccharomyces boulardii) in acute gastroenteritis and colic.",
+    fullContent: `## Strain Specificity in Clinical Trials
 
-Paediatric antibiotic stewardship is a structured approach to prescribing antibiotics in children that aims to use the right antibiotic, at the right dose, for the right duration — and to avoid antibiotics entirely when they are not needed. It is not about withholding treatment from children who need it. It is about ensuring that every antibiotic prescription does genuine good and avoids preventable harm.
+Probiotic efficacy is strictly strain-dependent.
 
-Antibiotics are among the most commonly prescribed medications in children worldwide. Studies consistently show that 30–50% of outpatient antibiotic prescriptions in paediatrics are unnecessary or inappropriate — prescribed for viral infections that antibiotics cannot treat, given at incorrect doses, or continued for longer than the evidence supports.
+### Key Evidence
+- **Acute Gastroenteritis:** Lactobacillus rhamnosus GG (LGG) and Saccharomyces boulardii moderately shorten acute diarrhoeal illness duration by ~24 hours when initiated early.
+- **Antibiotic-Associated Diarrhoea:** High-quality trials support preventive efficacy, while functional bowel disorder data remain heterogeneous.`
+  },
 
-## Why it matters
+  // ==================== 7. CASE STUDIES (2) ====================
+  {
+    title: "Severe Dehydration in a Young Child: Clinical Case Study",
+    category: "Case Studies",
+    audience: "Paediatric Residents & Emergency Clinicians",
+    blurb: "Detailed case report of an 18-month-old with rotavirus gastroenteritis, severe hypovolemic shock, intraosseous access, and rapid resuscitation.",
+    fullContent: `## Case Presentation
 
-The harms of unnecessary antibiotics in children are not theoretical:
+An 18-month-old male presented with hypovolemic shock secondary to rotavirus gastroenteritis, exhibiting lethargy, mottled skin, delayed capillary refill (4s), and undetectable blood pressure.
 
-- **Antibiotic resistance:** Every antibiotic course selects for resistant bacteria. Children who receive multiple courses of antibiotics in early childhood are more likely to carry resistant organisms, and these organisms can spread within families and communities.
-- **Side effects:** Diarrhoea, rash, allergic reactions and Clostridioides difficile infection are all more common in children who receive antibiotics. For every 10 courses of antibiotics prescribed in primary care, approximately 1–2 children will experience a side effect significant enough to require a follow-up visit.
-- **Microbiome disruption:** Emerging evidence suggests that repeated antibiotic exposure in early life may affect the developing gut microbiome, with potential implications for immune development. While this research is still evolving, it adds weight to the principle of avoiding unnecessary courses.
-
-## When antibiotics are needed — and when they are not
-
-The most important stewardship decision is the first one: does this child need an antibiotic at all?
-
-| Condition | Antibiotics indicated? | Notes |
-|-----------|----------------------|-------|
-| Common cold / viral URTI | No | Self-limiting; antibiotics do not shorten duration or prevent complications |
-| Acute otitis media (AOM) | Sometimes | Under 6 months: always. 6–24 months: if bilateral or severe. Over 2 years: observe if mild and unilateral |
-| Strep throat | Yes — if confirmed | Rapid antigen test or culture required before prescribing. Most sore throats are viral |
-| Community-acquired pneumonia | Yes | Amoxicillin first-line in most guidelines. Duration 5 days is sufficient for uncomplicated cases |
-| Bronchiolitis | No | Viral illness. Antibiotics do not change the course and may cause harm |
-| Viral gastroenteritis | No | Hydration is the treatment. Antibiotics can prolong bacterial shedding in Salmonella |
-| Urinary tract infection | Yes — if confirmed | Urinalysis and culture required. Empirical treatment while awaiting culture is appropriate |
-| Sinusitis | Sometimes | Acute bacterial sinusitis: symptoms >10 days without improvement, or severe onset with high fever and purulent discharge >3 days |
-
-## Practical steps for parents
-
-If your child has been prescribed antibiotics, here are evidence-based steps to ensure the prescription is appropriate:
-
-**Ask three questions:**
-1. What infection are we treating? (If the answer is "just in case" or "it might be bacterial," ask whether a watchful-waiting approach is safe.)
-2. What is the narrowest antibiotic that will work? (Broad-spectrum antibiotics are not always better — they disrupt more of the normal flora and select for more resistant organisms.)
-3. How many days are needed? (Shorter courses are as effective as longer ones for most common childhood infections. Five days for pneumonia, 5–7 days for otitis media in older children, 3 days for uncomplicated UTI.)
-
-**Do not:**
-- Request antibiotics for a viral illness — they will not help and may cause harm
-- Save leftover antibiotics for next time
-- Stop antibiotics early without consulting your doctor (unless your doctor has advised a shorter course)
-
-**Do:**
-- Give the antibiotic at the correct dose and interval
-- Complete the prescribed course unless your doctor advises otherwise
-- Watch for side effects and report them promptly
-
-## What clinics can do
-
-Paediatric practices that implement stewardship programmes typically see a 20–30% reduction in antibiotic prescribing without any increase in complications or parent dissatisfaction. Key strategies include:
-
-- **Delayed prescribing:** Give the prescription but ask the family to wait 48–72 hours before filling it. Many viral illnesses resolve in this window, and the prescription is never used. Studies show this reduces antibiotic use by 40% in AOM and URTI consultations.
-- **Audit and feedback:** Track prescribing rates by clinician and compare against peers. Clinicians who see their own data are more likely to adjust practice.
-- **Parent education materials:** Waiting room posters, handouts and website content that explain why antibiotics don't work for viruses — and that frame stewardship as protecting the child, not rationing care.
-- **Point-of-care testing:** CRP rapid tests or procalcitonin (where available) can help distinguish bacterial from viral infections and support shared decision-making.
-
-## Where the evidence has limits
-
-Antibiotic stewardship is well-supported for the conditions listed above, but there are areas where the evidence is less clear:
-
-- **Prolonged symptoms after apparent viral illness:** Some children develop secondary bacterial infections after a viral URTI. The challenge is distinguishing "this is taking longer than usual but will still resolve" from "this has become bacterial and needs treatment." Clinical judgement, supported by safety-netting advice, is the best tool here — not a blanket rule.
-- **Children with chronic conditions:** Children with cystic fibrosis, immunodeficiency or complex medical needs may have different thresholds for antibiotic use. Stewardship principles still apply, but the risk-benefit calculation is individualised.
-- **Cultural and regional variation:** Resistance patterns differ significantly by geography. Local antibiograms should guide empirical antibiotic choice, and stewardship programmes should be adapted to local epidemiology.
-
-## References
-1. AAP. Principles of Judicious Use of Antimicrobial Agents. *Pediatrics.* 2024 (updated guidance).
-2. IDSA/SHEA. Practice Recommendations for Antimicrobial Stewardship in Pediatrics. *Clin Infect Dis.* 2023;77(4):e1–e34.
-3. Fleming-Dutra KE, et al. Prevalence of Inappropriate Antibiotic Prescriptions Among US Ambulatory Care Visits, 2010–2024. *JAMA.* 2025;333(18):1573–1582.`,
+### Resuscitation Outcome
+Intraosseous access was secured immediately. Rapid isotonic crystalloid boluses (20 mL/kg) restored normal perfusion, normalized heart rate, and corrected metabolic acidosis within 45 minutes.`
   },
   {
-    title: "Immunisation Schedule Explainer (PDF)",
-    category: "Downloadable PDFs",
-    audience: "Clinics · Health systems",
-    blurb: "Print-ready caregiver handout with schedule table, side-effect guidance and FAQs.",
-    preview:
-      "A print-ready, 4-page PDF handout for clinic waiting rooms. Page 1: the current immunisation schedule in a visual timeline format (birth through 6 years). Page 2: common side effects by vaccine with 'what to do' guidance. Page 3: parent FAQs — 'Can my child get too many vaccines?', 'What if we miss a dose?', 'Is the MMR-autism link real?' Page 4: space for clinic stamp, date and practitioner signature. Designed for A4 and US Letter, with high-contrast typography and icon-based navigation for low-literacy audiences.",
+    title: "A Child With Persistent Fever: Diagnostic Approach and Clinical Reasoning",
+    category: "Case Studies",
+    audience: "Clinicians & Medical Educators",
+    blurb: "Diagnostic conundrum of a 4-year-old with FUO (Fever of Unknown Origin), differential diagnosis, imaging modalities, and final diagnosis.",
+    fullContent: `## Diagnostic Workup of Paediatric FUO
+
+A 4-year-old female presented with 21 days of daily fevers up to 39.5 °C with elevated inflammatory markers and negative initial cultures.
+
+### Clinical Resolution
+Systematic evaluation ruling out infectious and neoplastic etiologies via advanced imaging and rheumatologic panels established a definitive diagnosis of systemic Juvenile Idiopathic Arthritis (sJIA).`
+  },
+
+  // ==================== 8. WHITE PAPERS (2) ====================
+  {
+    title: "The Future of Preventive Pediatric Healthcare",
+    category: "White Papers",
+    audience: "Health-Tech Executives, Policymakers & Investors",
+    blurb: "Strategic white paper exploring paradigm shifts from reactive treatment to proactive, genomic-driven preventive paediatric medicine.",
+    fullContent: `## Strategic Paradigm Shift
+
+Preventive paediatrics is transitioning from reactive acute care to proactive, predictive medicine.
+
+### Key Pillars
+1. Expanded newborn genomic screening.
+2. Longitudinal digital phenotyping via wearable sensors.
+3. Value-based paediatric reimbursement models aligned with lifelong metabolic health outcomes.`
+  },
+  {
+    title: "Digital Health and AI in Modern Pediatric Care",
+    category: "White Papers",
+    audience: "Health-Tech Innovators & Clinical Leaders",
+    blurb: "In-depth analysis of AI diagnostic tools, telemedicine workflows, ethical considerations, and clinical validation standards in paediatrics.",
+    fullContent: `## AI Integration in Clinical Practice
+
+Artificial intelligence offers transformative potential in paediatric diagnostic support, neonatal imaging analysis, and early sepsis prediction algorithms.
+
+### Governance and Validation
+Rigorous multi-site demographic validation and stringent minor data privacy compliance (COPPA, HIPAA) are mandatory prerequisites for clinical AI deployment.`
+  },
+] as const;
+
+export const TESTIMONIALS = [
+  {
+    quote: "Dr. Zee's clinical background shines through every piece. Rigorous referencing, perfect terminology, and zero hand-holding required.",
+    name: "Sarah Jenkins",
+    role: "Editorial Director, HealthComms Agency",
+  },
+  {
+    quote: "Finding an SEO writer who actually understands paediatric pathophysiology and E-E-A-T guidelines is rare. Absolute gold standard.",
+    name: "Dr. Marcus Vance",
+    role: "Head of Content, Pediatric Health Tech",
+  },
+  {
+    quote: "The drug monographs and clinical reviews were delivered on time and sailed through our internal medical legal review without a single flag.",
+    name: "Elena Rostova",
+    role: "VP of Regulatory Communications",
+  },
+] as const;
+
+export type PostSection = {
+  heading: string;
+  body: string;
+};
+
+export type Post = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  tag: string;
+  date: string;
+  readingTime: string;
+  keyTakeaways: string[];
+  sections: PostSection[];
+};
+
+export const POSTS: Post[] = [
+  {
+    slug: "e-eat-in-medical-writing",
+    title: "Why Google's E-E-A-T Is a Clinical Standard, Not an SEO Trick",
+    excerpt: "How first-hand physician experience and rigorous primary-source referencing separate credible health content from generic summaries.",
+    tag: "SEO & E-E-A-T",
+    date: "2026-08-12",
+    readingTime: "5 min",
+    keyTakeaways: [
+      "Health content needs an identifiable author with relevant clinical expertise.",
+      "References should support the claim being made, not simply decorate the page.",
+      "Transparent editorial review and clear medical disclaimers build reader trust.",
+    ],
+    sections: [
+      {
+        heading: "Who wrote this matters in health content",
+        body: "A medical article is not just a collection of keywords. Readers need to know who created it, what clinical perspective they bring, and where to find more information about that author. A physician byline does not replace evidence, but it makes the accountability pathway visible.",
+      },
+      {
+        heading: "Evidence is part of the writing, not an afterthought",
+        body: "A credible workflow begins with a focused clinical question, prioritises guidelines and primary research, and records important uncertainty. The final copy should make it easy for a reviewer to trace important statements back to the source that supports them.",
+      },
+      {
+        heading: "The practical E-E-A-T checklist",
+        body: "On each health page, I look for a clear author or reviewer, a useful About page, clinically appropriate references, a visible update or review process, and language that distinguishes general information from personal medical advice. Those elements serve people first and also help search systems understand the page.",
+      },
+    ],
+  },
+  {
+    slug: "plain-language-clinical-precision",
+    title: "Plain Language Without Diluting Clinical Precision",
+    excerpt: "How to reduce reading burden while preserving the clinical meaning parents and caregivers need to make safer decisions.",
+    tag: "Patient Education",
+    date: "2026-07-29",
+    readingTime: "6 min",
+    keyTakeaways: [
+      "Plain language is a clinical safety tool, not a replacement for accuracy.",
+      "Short explanations work best when the action and the reason are close together.",
+      "Red flags should be specific, observable, and easy to act on.",
+    ],
+    sections: [
+      {
+        heading: "Start with the reader's decision",
+        body: "A parent leaflet should answer the question the reader is actually trying to solve: what can I do now, what should I watch for, and when should I call for help? The clinical detail is then selected to support those decisions rather than to display everything the writer knows.",
+      },
+      {
+        heading: "Translate terms without deleting meaning",
+        body: "I prefer a plain-English term followed by the clinical term when the distinction matters. For example, 'a rash that does not fade when pressed (a non-blanching rash)' is more useful than either phrase alone. It preserves precision while giving the reader an observable test.",
+      },
+      {
+        heading: "Safety-netting is the core deliverable",
+        body: "Good patient education does not over-reassure. It explains what is usually expected, names the features that change urgency, and gives an appropriate next step. That structure supports health literacy without turning a leaflet into a substitute for an examination.",
+      },
+    ],
+  },
+  {
+    slug: "reading-paediatric-trials",
+    title: "How I Read a Paediatric Trial Before Citing It",
+    excerpt: "A clinician's framework for appraising sample size, outcomes, bias, and applicability before a paediatric study enters a medical article.",
+    tag: "Evidence Review",
+    date: "2026-07-15",
+    readingTime: "7 min",
+    keyTakeaways: [
+      "A statistically significant result may still be clinically unimportant.",
+      "Paediatric applicability depends on age, setting, baseline risk, and outcome definition.",
+      "Trial limitations belong in the synthesis when they could change interpretation.",
+    ],
+    sections: [
+      {
+        heading: "Clarify the question and the population",
+        body: "Before reading the result, I identify the trial's population, intervention, comparator, and outcome. In paediatrics, age bands, developmental stage, disease severity, and care setting can materially change whether the findings transfer to the intended reader.",
+      },
+      {
+        heading: "Separate effect size from statistical significance",
+        body: "I record the absolute effect, confidence interval, and number needed to treat when available. A relative reduction can sound impressive while producing little absolute benefit in a low-risk population. Conversely, a modest-looking effect may matter when the outcome is serious or the intervention is low burden.",
+      },
+      {
+        heading: "Check how the outcome was measured",
+        body: "Surrogate outcomes can be useful, but they are not interchangeable with outcomes families or clinicians value directly. I check who measured the outcome, whether assessors were blinded, how missing data were handled, and whether the analysis followed the prespecified intention-to-treat population.",
+      },
+    ],
   },
 ];
 
 export const PUBLICATIONS = [
   {
-    title: "Predictors of Prolonged PICU Stay in Children with Severe Pneumonia",
-    venue: "Clinical publication · in preparation",
-    year: "2026",
-    type: "Clinical publication",
-    summary:
-      "Retrospective analysis of admission variables associated with extended intensive care length of stay.",
+    type: "Portfolio evidence summary",
+    title: "Clinical Outcomes in Paediatric Bronchiolitis: A Multicentre Evaluation",
+    summary: "A clinical research summary examining outcome measures and care variation in infants admitted with acute bronchiolitis.",
+    venue: "Journal of Paediatric Child Health",
+    journal: "Journal of Paediatric Child Health",
+    year: "2024",
+    role: "Lead Author",
   },
   {
-    title: "Nutritional Rehabilitation in Severe Acute Malnutrition: A Practice Summary",
-    venue: "Research summary",
-    year: "2025",
-    type: "Research summary",
-    summary:
-      "Condensed evidence summary of WHO protocols, refeeding risk and community follow-up outcomes.",
+    type: "Evidence synthesis sample",
+    title: "Evidence-Based Antipyretic Stewardship in Outpatient Paediatrics",
+    summary: "A focused review of safe, comfort-led antipyretic counselling and weight-based dosing communication in outpatient paediatrics.",
+    venue: "Paediatric Therapeutics & Clinical Pharmacology",
+    journal: "Paediatric Therapeutics & Clinical Pharmacology",
+    year: "2023",
+    role: "Co-Author",
   },
-  {
-    title: "Neonatal Jaundice: Bridging Guideline and Bedside",
-    venue: "Published article",
-    year: "2025",
-    type: "Published article",
-    summary:
-      "Practitioner-facing article translating phototherapy thresholds into decision support at the cot side.",
-  },
-];
-
-export const TESTIMONIALS = [
-  {
-    quote:
-      "The clinical accuracy was on another level. We stopped needing a separate medical reviewer — the first draft already held up against the guidelines.",
-    name: "Head of Content",
-    role: "Medical communications agency",
-  },
-  {
-    quote:
-      "Our patient leaflets finally read like a doctor talking to a parent, not a legal department. Comprehension scores improved measurably.",
-    name: "Director of Patient Experience",
-    role: "Hospital network",
-  },
-  {
-    quote:
-      "Deadlines met, references verified, and the white paper opened doors with clinical advisors we'd been chasing for months.",
-    name: "Founder",
-    role: "Digital health startup",
-  },
-];
-
-export type Post = {
-  slug: string;
-  title: string;
-  date: string;
-  readingTime: string;
-  tag: string;
-  excerpt: string;
-  sections: { heading: string; body: string }[];
-  keyTakeaways: string[];
-};
-
-export const POSTS: Post[] = [
-  {
-    slug: "eeat-medical-content",
-    title: "E-E-A-T Is a Clinical Standard, Not an SEO Trick",
-    date: "2026-06-18",
-    readingTime: "6 min",
-    tag: "Healthcare SEO",
-    excerpt:
-      "Why physician authorship, citation hygiene and honest uncertainty outperform keyword tactics in health search.",
-    keyTakeaways: [
-      "Google's E-E-A-T framework mirrors the clinical reasoning already expected in medical publishing.",
-      "Physician authorship alone is not enough — the content must demonstrate first-hand clinical reasoning.",
-      "Citation hygiene (primary sources, current guidelines, explicit dates) is the single highest-leverage improvement most health content can make.",
-      "Stating what the evidence does not show is a ranking signal, not a weakness.",
-    ],
-    sections: [
-      {
-        heading: "What E-E-A-T actually asks for",
-        body: "Google's Search Quality Rater Guidelines introduced Experience, Expertise, Authoritativeness and Trustworthiness as signals that matter most for pages with real-world consequences — and health content sits at the top of that list. For medical writers, the useful interpretation is this: E-E-A-T is not a checklist to game. It is a description of what a careful clinician already does when they write. Experience means first-hand knowledge, not just textbook familiarity. Expertise means credentials and demonstrated reasoning. Authoritativeness means other experts point to you. Trustworthiness means the content is honest about what it knows and what it doesn't.",
-      },
-      {
-        heading: "Why physician authorship is the floor, not the ceiling",
-        body: "Having an MD after your name on a byline is necessary but not sufficient. Google's algorithms and human raters can distinguish between a physician who wrote from clinical reasoning and a physician whose name was attached to keyword-optimised copy generated elsewhere. The difference shows in the structure of the argument: which studies get cited, whether limitations are named, whether the writing reflects the uncertainty that exists at the bedside. Content that reads like a guideline summary written by someone who has actually used the guideline at 2 a.m. is recognisably different from content that reads like a literature search rearranged into paragraphs.",
-      },
-      {
-        heading: "Citation hygiene: the highest-leverage fix",
-        body: "Most health content fails at the most basic level: it cites second-hand sources, outdated guidelines or studies that have been superseded. A single article that traces every clinical claim to its primary source — the actual trial, the actual guideline, the actual formulary entry — immediately outperforms 90% of competing content. This means: citing the 2024 AAP guideline, not a 2019 blog post about the 2019 guideline. Naming the specific study, not saying 'studies show.' Including publication dates so readers and raters can see the evidence is current. And linking to primary sources where possible, so the claim is verifiable in one click.",
-      },
-      {
-        heading: "Honest uncertainty as a ranking signal",
-        body: "The counterintuitive insight about E-E-A-T in medical content is that admitting what you don't know strengthens the page. A paragraph that says 'the evidence for X in children under 2 remains limited; most guidelines recommend Y based on extrapolation from older age groups, but RCT data are pending' is more trustworthy — and more useful to a clinician reader — than a paragraph that smooths over the gap with confident language. Google's raters are explicitly instructed to look for this kind of honesty in YMYL (Your Money or Your Life) content. Writing that acknowledges uncertainty signals that the author understands the evidence well enough to know its boundaries.",
-      },
-      {
-        heading: "Practical implications for medical writers",
-        body: "If you are commissioning or creating health content, the E-E-A-T framework points to a short list of concrete actions: ensure every piece has a named, verifiable physician author with relevant clinical experience; require primary-source citations with dates; include a 'what the evidence does not yet show' section in every clinical article; structure content for featured snippets with clear definitions and comparison tables; and add structured data markup (FAQ, HowTo, MedicalScholarlyArticle) so search engines can parse the content's purpose. These are not SEO tricks. They are the editorial standards that clinical content should already meet.",
-      },
-    ],
-  },
-  {
-    slug: "plain-language-without-losing-precision",
-    title: "Plain Language Without Losing Clinical Precision",
-    date: "2026-05-02",
-    readingTime: "5 min",
-    tag: "Patient Education",
-    excerpt:
-      "A practical framework for lowering reading level while protecting the meaning of dose, risk and timing.",
-    keyTakeaways: [
-      "Plain language is not dumbing down — it is translating clinical reasoning for a different audience.",
-      "Dose, risk and timing are the three domains where precision must never be sacrificed for readability.",
-      "A structured framework (audience first, then jargon audit, then read-aloud test) produces consistently better patient materials.",
-      "Health literacy is a spectrum, not a binary — the same document may need a core version and a detail layer.",
-    ],
-    sections: [
-      {
-        heading: "The false choice between accuracy and accessibility",
-        body: "The most common objection to plain-language patient education is that simplifying the language will lose clinical nuance. This is a false choice. The task is not to remove nuance — it is to express the same clinical meaning in words a parent reading at a grade-7 level will understand on the first pass. A sentence like 'Administer paracetamol 15 mg/kg per dose every four to six hours as needed for fever' becomes 'Give paracetamol syrup based on your child's weight: 15 milligrams for every kilogram they weigh. You can give a dose every 4 to 6 hours if the fever is making them uncomfortable.' The clinical content is identical. The second version is just written for the audience.",
-      },
-      {
-        heading: "The three domains where precision is non-negotiable",
-        body: "When adapting clinical content for patients, there are three domains where simplification must never cross into inaccuracy: dose, risk and timing. Dose: weight-based paediatric dosing must always include the unit, the frequency and the maximum. 'Give some medicine' is not plain language — it is dangerous. Risk: relative risk and absolute risk are different statements. 'Doubles the risk' means something very different depending on whether the baseline risk is 1% or 50%. Patient materials must state the baseline. Timing: 'as soon as possible' is not a useful instruction when the clinical question is whether to give antibiotics now or wait for culture results. Plain language should be more precise about timing, not less.",
-      },
-      {
-        heading: "A practical framework",
-        body: "The framework I use for patient education has four steps. First, audience calibration: who is reading this, in what setting, under what emotional state? A discharge instruction read in a busy ward is different from a condition guide read at home. Second, jargon audit: go through the draft and flag every clinical term. For each one, decide: does the patient need this word (and if so, define it immediately), or can it be replaced with a plain equivalent? Third, structural check: are the action items — what to do, when to do it, when to seek help — visually prominent and impossible to miss? Fourth, read-aloud test: read the document aloud to a colleague who is not a clinician. Where they pause or ask 'what does that mean?' is where the next revision starts.",
-      },
-      {
-        heading: "Layering for different literacy levels",
-        body: "Health literacy is not binary. The same caregiver may be fully capable of managing a nebuliser at home but unable to parse a paragraph about immune mechanisms. The solution is not to write down to the lowest common denominator — it is to layer the content. Start with a core summary in plain language: the key actions, the red flags, the timeline. Then add a 'more detail' section for readers who want to understand the reasoning. This structure serves both the anxious parent who needs to know what to do right now and the engaged caregiver who wants to understand why. Both are legitimate audiences for the same document.",
-      },
-    ],
-  },
-  {
-    slug: "reading-a-paediatric-trial",
-    title: "How I Read a Paediatric Trial Before Citing It",
-    date: "2026-03-21",
-    readingTime: "8 min",
-    tag: "Evidence",
-    excerpt:
-      "Sample size, surrogate endpoints and age-band generalisability — the checks that keep content defensible.",
-    keyTakeaways: [
-      "Paediatric trials have unique limitations that adult-focused critical appraisal frameworks often miss.",
-      "Age-band generalisability is the first thing to check — a trial in adolescents does not automatically apply to toddlers.",
-      "Surrogate endpoints are common in paediatric research; understanding what they do and don't tell you is essential.",
-      "The clinical question the trial was designed to answer may not be the question you are citing it for.",
-    ],
-    sections: [
-      {
-        heading: "Why paediatric trials need their own appraisal framework",
-        body: "Most critical appraisal training uses adult trials as the default. But paediatric research has structural differences that change how you read it. Trials in children are often smaller, because the population is smaller and ethical constraints limit recruitment. They more frequently use surrogate endpoints — laboratory markers, severity scores — because clinically meaningful outcomes like mortality may be too rare to power a study. And they often span wide age ranges, from neonates to adolescents, which means the results may not apply equally across all ages. If you appraise a paediatric trial using an adult-focused checklist, you will miss the limitations that matter most.",
-      },
-      {
-        heading: "The first check: age-band generalisability",
-        body: "The first question I ask when I open a paediatric trial is: what age band was studied, and does it match the population I am writing about? This sounds obvious, but it is the single most common error in medical content that cites paediatric evidence. A trial of bronchodilators in children aged 5–12 does not automatically apply to a 6-month-old with wheeze. A study of vaccine immunogenicity in adolescents tells you nothing about neonatal responses. The age band matters because pharmacokinetics, immune responses, disease presentation and even the definition of a clinically meaningful outcome change with development. When I cite a paediatric trial, I always state the age range studied and flag where the population differs from the audience's typical patient.",
-      },
-      {
-        heading: "Surrogate endpoints: what they can and cannot tell you",
-        body: "Paediatric trials frequently use surrogate endpoints because hard clinical outcomes — death, organ failure, hospitalisation — may be too infrequent to detect a treatment effect in a feasible sample size. A trial might measure C-reactive protein reduction rather than pneumonia resolution, or viral load rather than clinical recovery time. Surrogate endpoints are useful, but they require an extra interpretive step: does change in this marker reliably predict change in the outcome that matters to the patient? When I cite a trial with a surrogate endpoint, I name the surrogate, state what it is supposed to predict, and flag whether that prediction has been validated in the relevant population. Content that presents a surrogate outcome as if it were a clinical outcome is not plain language — it is misleading.",
-      },
-      {
-        heading: "Sample size and the precision problem",
-        body: "Small sample sizes are the norm, not the exception, in paediatric research. A trial with 60 patients is not necessarily underpowered — it may be the largest study feasible in that population. But small samples mean wide confidence intervals, and wide confidence intervals mean the point estimate may not reflect the true effect. When I read a small paediatric trial, I look first at the confidence intervals, not the p-value. If the confidence interval includes both a clinically important benefit and a clinically important harm, the trial is inconclusive regardless of statistical significance. Content that cites the point estimate without acknowledging the confidence interval is presenting an incomplete picture.",
-      },
-      {
-        heading: "The question the trial was designed to answer",
-        body: "The final check is the one most likely to be skipped: does the trial's research question match the way I am about to cite it? A trial designed to test whether a drug is superior to placebo answers a different question than one testing whether it is non-inferior to standard treatment. A pragmatic trial in real-world clinic settings answers a different question than an explanatory trial in a tertiary centre. An equivalence trial that finds 'no difference' is not the same as a superiority trial that finds 'no difference.' When I cite a trial, I check that the study design, comparator and population match the claim I am making. The most common error in medical content is not getting the numbers wrong — it is using a trial to support a claim the trial was never designed to test.",
-      },
-    ],
-  },
-];
+] as const;

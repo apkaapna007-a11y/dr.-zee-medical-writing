@@ -3,24 +3,33 @@ import { Download, Mail } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { CONTACT_EMAIL } from "@/components/site/Footer";
 
+import { AUTHOR_PERSON, DEFAULT_OG_IMAGE, ORGANIZATION_SCHEMA, SITE_URL, WEBSITE_SCHEMA, jsonLd, pageHead, webPageSchema } from "@/lib/seo";
 export const Route = createFileRoute("/cv")({
-  head: () => ({
-    meta: [
-      { title: "CV — Dr Zee, Paediatrician & Medical Writer" },
-      {
-        name: "description",
-        content:
-          "Professional CV of a paediatrician (MBBS, MCPS) and medical writer: qualifications, clinical experience, editorial skills and tools.",
-      },
-      { property: "og:title", content: "CV — Dr Zee, Paediatrician & Medical Writer" },
-      {
-        property: "og:description",
-        content: "Downloadable professional resume covering clinical and editorial experience.",
-      },
-      { property: "og:image", content: "https://drzeewrites.com/og-cv.png" },
-    ],
-    links: [{ rel: "canonical", href: "https://drzeewrites.com/cv" }],
-  }),
+  head: () => {
+    const head = pageHead({
+      title: "CV — Dr Zee, Physician & Medical Content Specialist",
+      description:
+        "Professional CV for Dr. Zeeshan Islam: MBBS, MCPS (Paediatrics), clinical experience, medical writing, evidence review, editing, and healthcare SEO expertise.",
+      path: "/cv",
+      type: "profile",
+      keywords:
+        "Dr Zee CV, physician medical writer CV, paediatrician medical writer qualifications, medical editor CV",
+    });
+    return {
+      ...head,
+      scripts: [
+        jsonLd({
+          ...webPageSchema({
+            title: "CV — Dr Zee, Physician & Medical Content Specialist",
+            description:
+              "Clinical training, paediatric experience, and editorial practice of Dr. Zeeshan Islam.",
+            path: "/cv",
+          }),
+          mainEntity: AUTHOR_PERSON,
+        }),
+      ],
+    }
+  },
   component: CV,
 });
 

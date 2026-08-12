@@ -4,24 +4,38 @@ import { Briefcase, Linkedin, Mail, Send, Sparkles } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { CONTACT_EMAIL, LINKEDIN_URL, UPWORK_URL, FIVERR_URL } from "@/components/site/Footer";
 
+import { AUTHOR_PERSON, DEFAULT_OG_IMAGE, ORGANIZATION_SCHEMA, SITE_URL, WEBSITE_SCHEMA, jsonLd, pageHead, webPageSchema } from "@/lib/seo";
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact — DrZeeWrites Medical Writing" },
-      {
-        name: "description",
-        content:
-          "Commission physician-led medical writing, review or editing. Email hello@drzeewrites.com or send a project brief.",
-      },
-      { property: "og:title", content: "Contact — DrZeeWrites Medical Writing" },
-      {
-        property: "og:description",
-        content: "Send a brief and receive a scoped proposal within two business days.",
-      },
-      { property: "og:image", content: "https://drzeewrites.com/og-contact.png" },
-    ],
-    links: [{ rel: "canonical", href: "https://drzeewrites.com/contact" }],
-  }),
+  head: () => {
+    const head = pageHead({
+      title: "Contact Dr Zee — Physician Medical Writer",
+      description:
+        "Send Dr Zee a medical writing brief for patient education, clinical articles, medical SEO, drug information, literature reviews, or healthcare white papers.",
+      path: "/contact",
+      keywords: "contact medical writer, commission physician writer, paediatric medical content, medical writing brief",
+    });
+    return {
+      ...head,
+      scripts: [
+        jsonLd({
+          ...webPageSchema({
+            title: "Contact Dr Zee — Physician Medical Writer",
+            description:
+              "Start a project with Dr. Zeeshan Islam, physician and medical content specialist.",
+            path: "/contact",
+            type: "ContactPage",
+          }),
+          mainEntity: {
+            "@type": "ProfessionalService",
+            "@id": `${SITE_URL}/#organization`,
+            name: "DrZeeWrites",
+            email: "hello@drzeewrites.com",
+            founder: { "@id": `${SITE_URL}/about#person` },
+          },
+        }),
+      ],
+    }
+  },
   component: Contact,
 });
 

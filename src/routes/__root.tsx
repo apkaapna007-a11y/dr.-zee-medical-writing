@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { DEFAULT_OG_IMAGE, SITE_NAME, WEBSITE_SCHEMA } from "@/lib/seo";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { ThemeProvider } from "@/hooks/use-theme";
@@ -86,17 +87,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Physician-led medical writing, scientific writing, medical review and patient education for healthcare, pharma and digital health.",
       },
-      { name: "author", content: "DrZeeWrites" },
-      { property: "og:site_name", content: "DrZeeWrites" },
+      { name: "author", content: "Dr. Zeeshan Islam, MBBS, MCPS (Paediatrics)" },
+      { property: "og:site_name", content: SITE_NAME },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "https://drzeewrites.com/og-default.png" },
+      { property: "og:image", content: DEFAULT_OG_IMAGE },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: "https://drzeewrites.com/og-default.png" },
-      { name: "theme-color", content: "#0b1220" },
+      { name: "twitter:image", content: DEFAULT_OG_IMAGE },
+      { name: "theme-color", content: "#f6f1e9" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
       { name: "apple-mobile-web-app-title", content: "DrZeeWrites" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(WEBSITE_SCHEMA),
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

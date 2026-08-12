@@ -2,20 +2,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { CONTACT_EMAIL } from "@/components/site/Footer";
 
+import { AUTHOR_PERSON, DEFAULT_OG_IMAGE, ORGANIZATION_SCHEMA, SITE_URL, WEBSITE_SCHEMA, jsonLd, pageHead, webPageSchema } from "@/lib/seo";
 export const Route = createFileRoute("/privacy")({
-  head: () => ({
-    meta: [
-      { title: "Privacy Policy — DrZeeWrites" },
-      {
-        name: "description",
-        content:
-          "How DrZeeWrites collects, uses and protects information submitted through the website and enquiry form.",
-      },
-      { property: "og:title", content: "Privacy Policy — DrZeeWrites" },
-      { property: "og:description", content: "Data handling practices for DrZeeWrites.com." },
-    ],
-    links: [{ rel: "canonical", href: "https://drzeewrites.com/privacy" }],
-  }),
+  head: () => {
+    const head = pageHead({
+      title: "Privacy Policy — DrZeeWrites",
+      description: "How DrZeeWrites handles contact enquiries, website data, cookies, and third-party services.",
+      path: "/privacy",
+    });
+    return { ...head, scripts: [jsonLd(webPageSchema({ title: "Privacy Policy — DrZeeWrites", description: "Website privacy and data handling information for DrZeeWrites.", path: "/privacy" }))] }
+  },
   component: Privacy,
 });
 

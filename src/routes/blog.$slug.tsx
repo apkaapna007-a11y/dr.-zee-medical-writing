@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, CalendarDays, Clock, Tag } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { POSTS, type Post } from "@/content/site";
 
+import { AUTHOR_PERSON, DEFAULT_OG_IMAGE, ORGANIZATION_SCHEMA, SITE_URL, WEBSITE_SCHEMA, jsonLd, pageHead, webPageSchema } from "@/lib/seo";
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
     const post = POSTS.find((p) => p.slug === params.slug);
@@ -12,53 +13,37 @@ export const Route = createFileRoute("/blog/$slug")({
   head: ({ loaderData }) => {
     if (!loaderData) {
       return {
-        meta: [
-          { title: "Article not found — DrZeeWrites" },
-          { name: "robots", content: "noindex" },
-        ],
+        meta: [{ title: "Article not found — DrZeeWrites" }, { name: "robots", content: "noindex, follow" }],
       };
     }
     const p = loaderData.post;
     const description = p.excerpt;
-    const url = `https://drzeewrites.com/blog/${p.slug}`;
+    const path = `/blog/${p.slug}`;
+    const url = `${SITE_URL}${path}`;
     return {
-      meta: [
-        { title: `${p.title} — DrZeeWrites` },
-        { name: "description", content: description },
-        { property: "og:title", content: p.title },
-        { property: "og:description", content: description },
-        { property: "og:type", content: "article" },
-        { property: "og:url", content: url },
-        { property: "og:image", content: "https://drzeewrites.com/og-blog.png" },
-        { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:title", content: p.title },
-        { name: "twitter:description", content: description },
-      ],
-      links: [{ rel: "canonical", href: url }],
+      ...pageHead({
+        title: `${p.title} — Dr Zee`,
+        description,
+        path,
+        type: "article",
+        keywords: p.tag,
+      }),
       scripts: [
-        {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            headline: p.title,
-            description,
-            datePublished: p.date,
-            author: {
-              "@type": "Person",
-              name: "Dr. Zeeshan Islam",
-              jobTitle: "Paediatrician & Medical Writer",
-              honorificSuffix: "MBBS, MCPS (Paediatrics)",
-            },
-            publisher: {
-              "@type": "Organization",
-              name: "DrZeeWrites",
-              url: "https://drzeewrites.com",
-            },
-            mainEntityOfPage: { "@type": "WebPage", "@id": url },
-            keywords: p.tag,
-          }),
-        },
+        jsonLd({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "@id": `${url}#article`,
+          url,
+          headline: p.title,
+          description,
+          datePublished: p.date,
+          dateModified: p.date,
+          author: { "@id": `${SITE_URL}/about#person` },
+          publisher: { "@id": `${SITE_URL}/#organization` },
+          mainEntityOfPage: { "@id": `${url}#webpage` },
+          keywords: p.tag,
+          inLanguage: "en-GB",
+        }),
       ],
     };
   },

@@ -2,24 +2,46 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PUBLICATIONS } from "@/content/site";
 
+import { AUTHOR_PERSON, DEFAULT_OG_IMAGE, ORGANIZATION_SCHEMA, SITE_URL, WEBSITE_SCHEMA, jsonLd, pageHead, webPageSchema } from "@/lib/seo";
 export const Route = createFileRoute("/publications")({
-  head: () => ({
-    meta: [
-      { title: "Publications & Research Summaries — DrZeeWrites" },
-      {
-        name: "description",
-        content:
-          "Published articles, research summaries and forthcoming clinical publications in paediatric medicine and intensive care.",
-      },
-      { property: "og:title", content: "Publications & Research Summaries" },
-      {
-        property: "og:description",
-        content: "Peer-facing writing and clinical research output from Dr Zee.",
-      },
-      { property: "og:image", content: "https://drzeewrites.com/og-publications.png" },
-    ],
-    links: [{ rel: "canonical", href: "https://drzeewrites.com/publications" }],
-  }),
+  head: () => {
+    const head = pageHead({
+      title: "Publications & Research — Dr Zee, Physician Writer",
+      description:
+        "Research publications and evidence summaries from Dr. Zeeshan Islam, covering paediatric medicine, bronchiolitis, and outpatient therapeutics.",
+      path: "/publications",
+      keywords: "paediatric medical publications, clinical research summaries, physician author, paediatric medicine",
+    });
+    return {
+      ...head,
+      scripts: [
+        jsonLd({
+          ...webPageSchema({
+            title: "Publications & Research — Dr Zee, Physician Writer",
+            description:
+              "A record of research outputs and publication summaries in paediatric medicine.",
+            path: "/publications",
+            type: "CollectionPage",
+          }),
+          mainEntity: {
+            "@type": "ItemList",
+            name: "Dr Zee publications and research summaries",
+            itemListElement: PUBLICATIONS.map((publication, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              item: {
+                "@type": "CreativeWork",
+                name: publication.title,
+                isPartOf: { "@type": "Periodical", name: publication.journal },
+                dateCreated: publication.year,
+                author: { "@id": `${SITE_URL}/about#person` },
+              },
+            })),
+          },
+        }),
+      ],
+    }
+  },
   component: Publications,
 });
 
@@ -34,8 +56,7 @@ function Publications() {
               Peer-facing writing and clinical research output.
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
-              This record grows as work moves through submission and review. Items marked in
-              preparation are shared once published.
+              This page distinguishes portfolio evidence summaries from independently verifiable publications. Published work should be linked to a journal or DOI; the entries below are portfolio samples unless a source link is explicitly provided.
             </p>
           </Reveal>
         </div>
@@ -54,7 +75,7 @@ function Publications() {
                 <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
                   {p.summary}
                 </p>
-                <p className="mt-4 text-xs text-muted-foreground">{p.venue}</p>
+                <p className="mt-4 text-xs text-muted-foreground">{p.venue} · Portfolio sample; publication status available on request</p>
               </li>
             </Reveal>
           ))}

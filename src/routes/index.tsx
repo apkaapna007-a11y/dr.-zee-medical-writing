@@ -12,74 +12,34 @@ import { Reveal } from "@/components/site/Reveal";
 import { SERVICES, PORTFOLIO, TESTIMONIALS, POSTS } from "@/content/site";
 import heroAurora from "@/assets/hero-aurora.jpg";
 
+import { AUTHOR_PERSON, DEFAULT_OG_IMAGE, ORGANIZATION_SCHEMA, SITE_URL, WEBSITE_SCHEMA, jsonLd, pageHead, webPageSchema } from "@/lib/seo";
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "DrZeeWrites — Physician Medical Writer & Scientific Editor" },
-      {
-        name: "description",
-        content:
-          "MBBS, MCPS Paediatrics. Evidence-based medical writing, scientific writing, medical review and patient education for pharma, digital health and med-comms teams.",
-      },
-      { property: "og:title", content: "DrZeeWrites — Physician Medical Writer" },
-      {
-        property: "og:description",
-        content:
-          "Physician-authored medical content: manuscripts, white papers, drug monographs, patient education and healthcare SEO.",
-      },
-      { property: "og:image", content: "https://drzeewrites.com/og-home.png" },
-    ],
-    links: [{ rel: "canonical", href: "https://drzeewrites.com/" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "ProfessionalService",
-          name: "DrZeeWrites",
-          description:
-            "Physician-led medical writing, scientific communication and editorial review for healthcare, pharma, digital health and med-comms teams.",
-          url: "https://drzeewrites.com",
-          email: "hello@drzeewrites.com",
-          founder: {
-            "@type": "Person",
-            name: "Dr. Zeeshan Islam",
-            jobTitle: "Paediatrician & Medical Writer",
-            honorificSuffix: "MBBS, MCPS (Paediatrics)",
+  head: () => {
+    const head = pageHead({
+      title: "Dr Zee — Physician & Medical Content Specialist",
+      description:
+        "Dr. Zee is a physician and paediatric medical content specialist writing patient education, HCP articles, medical SEO, drug monographs, evidence reviews, and healthcare technology content.",
+      path: "/",
+      keywords:
+        "physician medical writer, paediatric medical writer, medical content specialist, patient education, clinical articles, medical SEO",
+    });
+    return {
+      ...head,
+      scripts: [
+        jsonLd(WEBSITE_SCHEMA),
+        jsonLd(ORGANIZATION_SCHEMA),
+        jsonLd({
+          ...webPageSchema({
+            title: "Dr Zee — Physician & Medical Content Specialist",
             description:
-              "Practising paediatrician with intensive care experience, specialising in evidence-based medical writing and scientific editing.",
-          },
-          areaServed: "Worldwide",
-          serviceType: [
-            "Medical Writing",
-            "Scientific Writing",
-            "Medical Reviewing",
-            "Medical Editing",
-            "Patient Education",
-            "Healthcare SEO Content",
-            "Literature Reviews",
-            "White Papers",
-            "Drug Monographs",
-          ],
-          hasOfferCatalog: {
-            "@type": "OfferCatalog",
-            name: "Medical Writing Services",
-            itemListElement: [
-              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Medical Writing" } },
-              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Scientific Writing" } },
-              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Medical Reviewing" } },
-              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Medical Editing" } },
-              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Patient Education" } },
-              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Healthcare SEO Content" } },
-              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Literature Reviews" } },
-              { "@type": "Offer", itemOffered: { "@type": "Service", name: "White Papers" } },
-              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Drug Monographs" } },
-            ],
-          },
+              "Physician-authored medical writing and clinical content for healthcare, pharmaceutical, med-comms, and digital health teams.",
+            path: "/",
+          }),
+          mainEntity: AUTHOR_PERSON,
         }),
-      },
-    ],
-  }),
+      ],
+    }
+  },
   component: Home,
 });
 
@@ -115,7 +75,8 @@ function Home() {
           aria-hidden
         />
         <div className="pointer-events-none absolute inset-0 grain opacity-[0.03]" aria-hidden />
-        <div className="relative mx-auto max-w-6xl px-5 py-24 md:py-36">
+        <div className="relative mx-auto grid max-w-6xl gap-14 px-5 py-20 sm:py-24 md:grid-cols-[minmax(0,1.1fr)_minmax(18rem,0.7fr)] md:items-center md:gap-16 md:py-32 lg:px-6">
+          <div className="max-w-3xl">
           <Reveal>
             <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
               <Sparkles className="size-3.5 text-brass" aria-hidden />
@@ -178,21 +139,47 @@ function Home() {
               ))}
             </ul>
           </Reveal>
+          </div>
+          <Reveal delay={0.18}>
+            <aside className="relative">
+              <div className="absolute -inset-5 rounded-[2rem] bg-accent/10 blur-2xl" aria-hidden />
+              <div className="relative overflow-hidden rounded-[1.75rem] border border-border/70 bg-card/75 p-6 shadow-[0_28px_80px_-32px_oklch(0.18_0.04_250_/_0.35)] backdrop-blur-xl sm:p-8">
+                <div className="flex items-center justify-between border-b border-border/70 pb-5">
+                  <span className="eyebrow">Clinical perspective</span>
+                  <span className="font-display text-2xl text-brass">01</span>
+                </div>
+                <div className="mt-9 flex size-16 items-center justify-center rounded-2xl bg-primary text-xl font-semibold tracking-tight text-primary-foreground shadow-lg">
+                  DZ
+                </div>
+                <p className="mt-6 font-display text-2xl leading-tight text-foreground">
+                  Evidence you can read, trust and act on.
+                </p>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  Medical writing shaped by paediatric practice, intensive-care experience and careful editorial judgement.
+                </p>
+                <div className="mt-8 grid gap-3 border-t border-border/70 pt-6 text-xs text-muted-foreground">
+                  <div className="flex items-center justify-between gap-4"><span>Primary focus</span><span className="font-semibold text-foreground">Paediatrics</span></div>
+                  <div className="flex items-center justify-between gap-4"><span>Best for</span><span className="font-semibold text-foreground">Healthcare teams</span></div>
+                  <div className="flex items-center justify-between gap-4"><span>Approach</span><span className="font-semibold text-foreground">Evidence-first</span></div>
+                </div>
+              </div>
+            </aside>
+          </Reveal>
         </div>
       </section>
 
 
-      <section className="mx-auto max-w-6xl px-5 py-20 md:py-28">
+      <section className="mx-auto max-w-6xl px-5 py-20 md:py-28 lg:px-6">
         <Reveal>
           <p className="eyebrow">Services</p>
-          <h2 className="mt-3 max-w-2xl text-3xl md:text-4xl">
+          <h2 className="mt-3 max-w-2xl text-3xl leading-[1.02] md:text-4xl">
             Editorial work that holds up to clinical scrutiny.
           </h2>
         </Reveal>
-        <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {SERVICES.slice(0, 6).map((s, i) => (
             <Reveal key={s.slug} delay={i * 0.05}>
-              <article className="h-full rounded-xl glass lift p-6">
+              <article className="group h-full rounded-2xl glass lift p-7">
                 <FileText className="size-5 text-accent" aria-hidden />
                 <h3 className="mt-4 text-lg">{s.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.summary}</p>
@@ -214,12 +201,12 @@ function Home() {
         <div className="mx-auto max-w-6xl px-5 py-20 md:py-28">
           <Reveal>
             <p className="eyebrow">Featured portfolio</p>
-            <h2 className="mt-3 max-w-2xl text-3xl md:text-4xl">Selected work across audiences.</h2>
+            <h2 className="mt-3 max-w-2xl text-3xl leading-[1.02] md:text-4xl">Selected work across audiences.</h2>
           </Reveal>
           <div className="mt-12 grid gap-4 md:grid-cols-3">
             {PORTFOLIO.slice(0, 3).map((p, i) => (
               <Reveal key={p.title} delay={i * 0.06}>
-                <article className="h-full rounded-xl glass lift p-6">
+                <article className="group h-full rounded-2xl glass lift p-7">
                   <span className="eyebrow">{p.category}</span>
                   <h3 className="mt-3 text-lg leading-snug">{p.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.blurb}</p>
@@ -235,7 +222,7 @@ function Home() {
         <div className="mx-auto max-w-6xl px-5 py-20 md:py-28">
           <Reveal>
             <p className="eyebrow">Latest articles</p>
-            <h2 className="mt-3 max-w-2xl text-3xl md:text-4xl">Notes on evidence and editorial practice.</h2>
+            <h2 className="mt-3 max-w-2xl text-3xl leading-[1.02] md:text-4xl">Notes on evidence and editorial practice.</h2>
           </Reveal>
           <div className="mt-12 grid gap-4 md:grid-cols-3">
             {POSTS.map((p, i) => (

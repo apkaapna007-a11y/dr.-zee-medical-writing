@@ -6,24 +6,44 @@ import { ReviewShowcase } from "@/components/site/ReviewShowcase";
 import { PORTFOLIO, PORTFOLIO_CATEGORIES } from "@/content/site";
 import { cn } from "@/lib/utils";
 
+import { AUTHOR_PERSON, DEFAULT_OG_IMAGE, ORGANIZATION_SCHEMA, SITE_URL, WEBSITE_SCHEMA, jsonLd, pageHead, webPageSchema } from "@/lib/seo";
 export const Route = createFileRoute("/portfolio")({
-  head: () => ({
-    meta: [
-      { title: "Portfolio — Medical Writing Samples | DrZeeWrites" },
-      {
-        name: "description",
-        content:
-          "Writing samples across patient education, HCP articles, medical blogs, white papers, drug monographs, literature reviews and case studies.",
-      },
-      { property: "og:title", content: "Portfolio — Medical Writing Samples" },
-      {
-        property: "og:description",
-        content: "Physician-authored samples across eight medical content categories.",
-      },
-      { property: "og:image", content: "https://drzeewrites.com/og-portfolio.png" },
-    ],
-    links: [{ rel: "canonical", href: "https://drzeewrites.com/portfolio" }],
-  }),
+  head: () => {
+    const head = pageHead({
+      title: "Medical Writing Portfolio — 24 Samples | Dr Zee",
+      description:
+        "Browse 24 physician-authored medical writing samples across patient education, HCP articles, paediatrics, medical SEO, drug monographs, evidence reviews, case studies, and white papers.",
+      path: "/portfolio",
+      keywords:
+        "medical writing portfolio, paediatric writing samples, patient education samples, clinical article samples, medical SEO portfolio",
+    });
+    return {
+      ...head,
+      scripts: [
+        jsonLd({
+          ...webPageSchema({
+            title: "Medical Writing Portfolio — 24 Samples | Dr Zee",
+            description:
+              "A curated portfolio of physician-authored samples for healthcare, pharmaceutical, med-comms, and digital health clients.",
+            path: "/portfolio",
+            type: "CollectionPage",
+          }),
+          mainEntity: {
+            "@type": "ItemList",
+            name: "Dr Zee medical writing samples",
+            numberOfItems: PORTFOLIO.length,
+            itemListElement: PORTFOLIO.map((item, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              name: item.title,
+              description: item.blurb,
+            })),
+          },
+          author: { "@id": `${SITE_URL}/about#person` },
+        }),
+      ],
+    }
+  },
   component: Portfolio,
 });
 
@@ -36,7 +56,7 @@ function renderMarkdown(text: string) {
 
   function flushTable() {
     if (tableRows.length === 0) return;
-    const headers = tableRows[0];
+    const headers = tableRows[0] ?? [];
     const body = tableRows.slice(2);
     elements.push(
       <div key={key++} className="my-4 overflow-x-auto">
@@ -72,7 +92,7 @@ function renderMarkdown(text: string) {
   }
 
   for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
+    const line = lines[i] ?? "";
 
     if (line.startsWith("|")) {
       inTable = true;
@@ -101,9 +121,9 @@ function renderMarkdown(text: string) {
       continue;
     } else if (line.startsWith("- ")) {
       const listItems: string[] = [line.replace("- ", "")];
-      while (i + 1 < lines.length && lines[i + 1].startsWith("- ")) {
+      while (i + 1 < lines.length && (lines[i + 1] ?? "").startsWith("- ")) {
         i++;
-        listItems.push(lines[i].replace("- ", ""));
+        listItems.push((lines[i] ?? "").replace("- ", ""));
       }
       elements.push(
         <ul key={key++} className="my-3 grid gap-2">
@@ -117,9 +137,9 @@ function renderMarkdown(text: string) {
       );
     } else if (/^\d+\.\s/.test(line)) {
       const listItems: string[] = [line.replace(/^\d+\.\s/, "")];
-      while (i + 1 < lines.length && /^\d+\.\s/.test(lines[i + 1])) {
+      while (i + 1 < lines.length && /^\d+\.\s/.test(lines[i + 1] ?? "")) {
         i++;
-        listItems.push(lines[i].replace(/^\d+\.\s/, ""));
+        listItems.push((lines[i] ?? "").replace(/^\d+\.\s/, ""));
       }
       elements.push(
         <ol key={key++} className="my-3 grid gap-2 list-decimal list-inside">
@@ -156,25 +176,29 @@ function Portfolio() {
 
   return (
     <>
-      <section className="border-b border-border/60">
-        <div className="mx-auto max-w-6xl px-5 py-20 md:py-28">
+      <section className="relative overflow-hidden border-b border-border/60 bg-card/30">
+        <div className="pointer-events-none absolute inset-0 premium-grid opacity-30" aria-hidden />
+        <div className="relative mx-auto max-w-6xl px-5 py-20 md:py-28 lg:px-6">
           <Reveal>
             <p className="eyebrow">Portfolio</p>
-            <h1 className="mt-4 max-w-3xl text-balance font-display text-4xl leading-[1.1] md:text-5xl">
+            <h1 className="mt-5 max-w-3xl text-balance font-display text-4xl leading-[0.98] md:text-6xl">
               Work samples, grouped by who has to read them.
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
-              Full samples and downloadable PDFs are available on request; client work under NDA is
-              described without identifying details. Select items include a complete, readable sample.
+              Explore 24 original demonstration samples across eight medical writing categories. Client work under NDA is described without identifying details; downloadable deliverables are available on request.
             </p>
+            <div className="mt-7 max-w-2xl rounded-2xl border border-border/70 bg-background/70 p-5 text-sm leading-relaxed text-muted-foreground shadow-[0_16px_40px_-28px_oklch(0.18_0.04_250_/_0.35)] backdrop-blur-xl">
+              <p>
+                <strong className="text-foreground">Authorship & clinical review:</strong> Every sample is written for this portfolio by Dr. Zeeshan Islam, MBBS, MCPS (Paediatrics), and structured for the stated audience. Clinical claims are framed against current guidance or primary literature; these demonstration pieces are for professional review and are not personal medical advice.
+              </p>
+            </div>
           </Reveal>
         </div>
       </section>
 
       <ReviewShowcase />
 
-      <section className="mx-auto max-w-6xl px-5 py-16">
-
+      <section className="mx-auto max-w-6xl px-5 py-16 md:py-20 lg:px-6">
         <Reveal>
           <div className="flex flex-wrap gap-2" role="group" aria-label="Filter portfolio">
             {["All", ...PORTFOLIO_CATEGORIES].map((c) => (
@@ -184,10 +208,10 @@ function Portfolio() {
                 onClick={() => setFilter(c)}
                 aria-pressed={filter === c}
                 className={cn(
-                  "min-h-11 rounded-full border px-4 text-sm transition-colors",
+                  "min-h-11 rounded-full border px-4 text-xs font-semibold transition-all",
                   filter === c
                     ? "border-transparent bg-primary text-primary-foreground"
-                    : "border-border bg-card text-muted-foreground hover:border-accent hover:text-foreground",
+                    : "border-border/80 bg-card/70 text-muted-foreground hover:-translate-y-0.5 hover:border-accent hover:bg-secondary hover:text-foreground",
                 )}
               >
                 {c}
@@ -196,13 +220,16 @@ function Portfolio() {
           </div>
         </Reveal>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
+        <div className="mt-10 grid gap-5 md:grid-cols-2">
           {items.map((p, i) => (
             <Reveal key={p.title} delay={(i % 2) * 0.05}>
-              <article className="flex h-full flex-col rounded-xl glass lift p-6">
-                <span className="eyebrow">{p.category}</span>
+              <article className="group flex h-full flex-col rounded-2xl glass lift p-7">
+                <div className="flex items-center justify-between gap-4"><span className="eyebrow">{p.category}</span><span className="font-display text-xl text-brass">{String(i + 1).padStart(2, "0")}</span></div>
                 <h2 className="mt-3 text-xl leading-snug">{p.title}</h2>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.blurb}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.blurb}</p>
+                  <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
+                    Author: Dr. Zeeshan Islam, MBBS, MCPS (Paediatrics) · Physician-led clinical review
+                  </p>
 
                 {(p.preview || p.fullContent) && (
                   <div className="mt-4">
@@ -249,14 +276,10 @@ function Portfolio() {
                   </div>
                 )}
 
-                <div className="mt-6 flex items-center justify-between border-t border-border/60 pt-4 text-xs text-muted-foreground">
+                <div className="mt-7 flex items-center justify-between border-t border-border/60 pt-5 text-xs text-muted-foreground">
                   <span>{p.audience}</span>
                   <span className="inline-flex items-center gap-1.5">
-                    {p.category === "Downloadable PDFs" ? (
-                      <>
-                        <Download className="size-3.5" aria-hidden /> PDF on request
-                      </>
-                    ) : p.fullContent ? (
+                    {p.fullContent ? (
                       <>
                         <FileText className="size-3.5" aria-hidden /> Full sample above
                       </>

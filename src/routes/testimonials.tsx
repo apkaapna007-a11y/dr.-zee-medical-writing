@@ -3,24 +3,44 @@ import { Quote } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { TESTIMONIALS } from "@/content/site";
 
+import { AUTHOR_PERSON, DEFAULT_OG_IMAGE, ORGANIZATION_SCHEMA, SITE_URL, WEBSITE_SCHEMA, jsonLd, pageHead, webPageSchema } from "@/lib/seo";
 export const Route = createFileRoute("/testimonials")({
-  head: () => ({
-    meta: [
-      { title: "Client Testimonials — DrZeeWrites" },
-      {
-        name: "description",
-        content:
-          "What med-comms agencies, hospital teams and digital health founders say about working with a physician medical writer.",
-      },
-      { property: "og:title", content: "Client Testimonials — DrZeeWrites" },
-      {
-        property: "og:description",
-        content: "Feedback from healthcare, pharma and digital health clients.",
-      },
-      { property: "og:image", content: "https://drzeewrites.com/og-testimonials.png" },
-    ],
-    links: [{ rel: "canonical", href: "https://drzeewrites.com/testimonials" }],
-  }),
+  head: () => {
+    const head = pageHead({
+      title: "Client Testimonials — Dr Zee Medical Writing",
+      description:
+        "Feedback from healthcare, pharmaceutical, med-comms, and digital health clients about working with Dr Zee on clinical content and medical writing.",
+      path: "/testimonials",
+      keywords: "medical writer testimonials, physician medical writer reviews, healthcare content writer feedback",
+    });
+    return {
+      ...head,
+      scripts: [
+        jsonLd({
+          ...webPageSchema({
+            title: "Client Testimonials — Dr Zee Medical Writing",
+            description:
+              "Client feedback about physician-led medical writing, clinical review, and healthcare content projects.",
+            path: "/testimonials",
+          }),
+          mainEntity: {
+            "@type": "ItemList",
+            numberOfItems: TESTIMONIALS.length,
+            itemListElement: TESTIMONIALS.map((testimonial, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              item: {
+                "@type": "Review",
+                reviewBody: testimonial.quote,
+                author: { "@type": "Person", name: testimonial.name },
+                reviewRating: undefined,
+              },
+            })),
+          },
+        }),
+      ],
+    }
+  },
   component: Testimonials,
 });
 

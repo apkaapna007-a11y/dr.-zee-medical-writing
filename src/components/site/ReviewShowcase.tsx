@@ -12,16 +12,43 @@ import {
 } from "@/components/ui/dialog";
 import { LITERATURE_REVIEWS, type ReviewSample } from "@/content/reviews";
 
+const COVER_STYLES = [
+  "from-primary via-primary/85 to-accent/80 text-primary-foreground",
+  "from-ink via-primary/80 to-brass/80 text-ink-foreground",
+  "from-secondary via-accent/45 to-background text-foreground",
+] as const;
+
+function ReviewCover({ review, index }: { review: ReviewSample; index: number }) {
+  const style = COVER_STYLES[index % COVER_STYLES.length];
+  return (
+    <div className={`relative aspect-[3/4] w-full overflow-hidden bg-gradient-to-br ${style}`}>
+      <div className="pointer-events-none absolute inset-0 premium-grid opacity-20" aria-hidden />
+      <div className="absolute inset-x-6 top-6 flex items-center justify-between">
+        <span className="text-[0.58rem] font-bold uppercase tracking-[0.2em] opacity-75">DrZeeWrites</span>
+        <span className="font-display text-xl opacity-80">{String(index + 1).padStart(2, "0")}</span>
+      </div>
+      <div className="absolute inset-x-6 bottom-7">
+        <span className="text-[0.62rem] font-bold uppercase tracking-[0.18em] opacity-70">Literature review</span>
+        <p className="mt-3 max-w-[13rem] font-display text-2xl leading-[1.02]">{review.shortTitle}</p>
+        <div className="mt-6 h-px w-12 bg-current opacity-50" />
+        <p className="mt-3 text-xs opacity-75">Physician-authored · {review.pages} pages</p>
+      </div>
+    </div>
+  );
+}
+
 export function ReviewShowcase() {
   const [active, setActive] = useState<ReviewSample | null>(null);
 
+  const activeIndex = active ? Math.max(0, LITERATURE_REVIEWS.findIndex((review) => review.slug === active.slug)) : 0;
+
   return (
-    <section id="literature-reviews" className="relative mx-auto max-w-6xl px-5 py-20">
+    <section id="literature-reviews" className="relative mx-auto max-w-6xl px-5 py-20 md:py-24 lg:px-6">
       <Reveal>
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="eyebrow">Featured samples · Literature reviews</p>
-            <h2 className="mt-4 max-w-2xl text-balance font-display text-3xl leading-[1.15] md:text-4xl">
+            <h2 className="mt-4 max-w-2xl text-balance font-display text-3xl leading-[1.02] md:text-5xl">
               Three full reviews you can read end to end.
             </h2>
           </div>
@@ -32,22 +59,17 @@ export function ReviewShowcase() {
         </div>
       </Reveal>
 
-      <div className="mt-12 grid gap-6 md:grid-cols-3">
+      <div className="mt-12 grid gap-5 md:grid-cols-3">
         {LITERATURE_REVIEWS.map((r, i) => (
           <Reveal key={r.slug} delay={i * 0.07}>
-            <article className="group flex h-full flex-col overflow-hidden rounded-2xl glass lift">
+            <article className="group flex h-full flex-col overflow-hidden rounded-[1.5rem] glass lift">
               <button
                 type="button"
                 onClick={() => setActive(r)}
                 className="relative block w-full overflow-hidden border-b border-border/60 text-left"
                 aria-label={`Preview ${r.title}`}
               >
-                <img
-                  src={r.cover}
-                  alt={`Cover page of the literature review: ${r.title}`}
-                  loading="lazy"
-                  className="aspect-[3/4] w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
-                />
+                <ReviewCover review={r} index={i} />
                 <span className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background/90 to-transparent" />
                 <span className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-background/70 px-3 py-1 text-[11px] tracking-wide text-muted-foreground backdrop-blur">
                   <FileText className="size-3" aria-hidden /> PDF · {r.pages} pages · {r.span}
@@ -65,7 +87,7 @@ export function ReviewShowcase() {
                 </span>
               </button>
 
-              <div className="flex flex-1 flex-col p-6">
+                <div className="flex flex-1 flex-col p-7">
                 <h3 className="text-lg leading-snug">{r.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{r.summary}</p>
 
@@ -73,7 +95,7 @@ export function ReviewShowcase() {
                   {r.tags.map((t) => (
                     <li
                       key={t}
-                      className="rounded-full border border-border/70 px-2.5 py-1 text-[11px] text-muted-foreground"
+                      className="rounded-full border border-border/70 bg-secondary/50 px-2.5 py-1 text-[11px] text-muted-foreground"
                     >
                       {t}
                     </li>
@@ -86,7 +108,7 @@ export function ReviewShowcase() {
                   <Link
                     to="/reviews/$slug"
                     params={{ slug: r.slug }}
-                    className="inline-flex min-h-11 items-center gap-1.5 rounded-full bg-primary px-4 text-primary-foreground transition-opacity hover:opacity-90"
+                    className="glow-cta inline-flex min-h-11 items-center gap-1.5 rounded-full bg-primary px-4 text-sm font-semibold text-primary-foreground"
                   >
                     Read review <ArrowUpRight className="size-4" aria-hidden />
                   </Link>
@@ -110,11 +132,9 @@ export function ReviewShowcase() {
               </DialogHeader>
 
               <div className="mt-2 grid gap-6 sm:grid-cols-[minmax(0,220px)_1fr]">
-                <img
-                  src={active.cover}
-                  alt={`Cover page of ${active.title}`}
-                  className="w-full rounded-xl border border-border/60 object-cover object-top"
-                />
+                <div className="overflow-hidden rounded-xl border border-border/60">
+                  <ReviewCover review={active} index={activeIndex} />
+                </div>
                 <div>
                   <dl className="grid grid-cols-3 gap-3 text-center text-xs">
                     <div className="rounded-lg border border-border/60 p-2.5">

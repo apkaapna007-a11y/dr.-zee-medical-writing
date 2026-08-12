@@ -2,20 +2,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { CONTACT_EMAIL } from "@/components/site/Footer";
 
+import { AUTHOR_PERSON, DEFAULT_OG_IMAGE, ORGANIZATION_SCHEMA, SITE_URL, WEBSITE_SCHEMA, jsonLd, pageHead, webPageSchema } from "@/lib/seo";
 export const Route = createFileRoute("/terms")({
-  head: () => ({
-    meta: [
-      { title: "Terms of Use — DrZeeWrites" },
-      {
-        name: "description",
-        content:
-          "Terms governing use of DrZeeWrites.com, including content ownership, medical disclaimer and engagement terms.",
-      },
-      { property: "og:title", content: "Terms of Use — DrZeeWrites" },
-      { property: "og:description", content: "Website terms and medical disclaimer." },
-    ],
-    links: [{ rel: "canonical", href: "https://drzeewrites.com/terms" }],
-  }),
+  head: () => {
+    const head = pageHead({
+      title: "Terms of Use & Medical Disclaimer — DrZeeWrites",
+      description: "Terms governing use of DrZeeWrites, including intellectual property, engagement terms, and the medical information disclaimer.",
+      path: "/terms",
+    });
+    return { ...head, scripts: [jsonLd(webPageSchema({ title: "Terms of Use & Medical Disclaimer — DrZeeWrites", description: "Website terms and medical disclaimer for DrZeeWrites.", path: "/terms" }))] }
+  },
   component: Terms,
 });
 

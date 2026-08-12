@@ -1,30 +1,53 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useLocation } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { POSTS } from "@/content/site";
 
+import { AUTHOR_PERSON, DEFAULT_OG_IMAGE, ORGANIZATION_SCHEMA, SITE_URL, WEBSITE_SCHEMA, jsonLd, pageHead, webPageSchema } from "@/lib/seo";
 export const Route = createFileRoute("/blog")({
-  head: () => ({
-    meta: [
-      { title: "Resources & Insights — DrZeeWrites" },
-      {
-        name: "description",
-        content:
-          "Evidence-based healthcare articles and medical writing insights on E-E-A-T, plain language, and appraising clinical literature.",
-      },
-      { property: "og:title", content: "Resources & Insights — DrZeeWrites" },
-      {
-        property: "og:description",
-        content: "Notes on evidence, plain language and credible healthcare content.",
-      },
-      { property: "og:image", content: "https://drzeewrites.com/og-blog.png" },
-    ],
-    links: [{ rel: "canonical", href: "https://drzeewrites.com/blog" }],
-  }),
+  head: ({ params }) => {
+    const isArticle = Boolean((params as { slug?: string }).slug);
+    const head = pageHead({
+      title: "Medical Writing Resources & Insights | Dr Zee",
+      description:
+        "Evidence-based articles by Dr Zee on medical SEO, patient education, clinical evidence appraisal, and trustworthy healthcare content.",
+      path: "/blog",
+      keywords: "medical writing blog, medical SEO insights, patient education writing, clinical evidence appraisal",
+    });
+    return {
+      ...head,
+      links: isArticle ? [] : head.links,
+      scripts: isArticle ? [] : [
+        jsonLd({
+          ...webPageSchema({
+            title: "Medical Writing Resources & Insights | Dr Zee",
+            description:
+              "Evidence-led articles on medical writing, clinical communication, patient education, and healthcare SEO.",
+            path: "/blog",
+            type: "CollectionPage",
+          }),
+          author: { "@id": `${SITE_URL}/about#person` },
+          mainEntity: {
+            "@type": "ItemList",
+            itemListElement: POSTS.map((post, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              url: `${SITE_URL}/blog/${post.slug}`,
+              name: post.title,
+            })),
+          },
+        }),
+      ],
+    }
+  },
   component: Blog,
 });
 
 function Blog() {
+  const location = useLocation();
+  if (location.pathname.replace(/\/$/, "") !== "/blog") {
+    return <Outlet />;
+  }
   return (
     <>
       <section className="border-b border-border/60">

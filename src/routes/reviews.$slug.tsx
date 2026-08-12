@@ -4,6 +4,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { ReviewDownload } from "@/components/site/ReviewDownload";
 import { getReviewBySlug, LITERATURE_REVIEWS, type ReviewSample } from "@/content/reviews";
 
+import { AUTHOR_PERSON, DEFAULT_OG_IMAGE, ORGANIZATION_SCHEMA, SITE_URL, WEBSITE_SCHEMA, jsonLd, pageHead, webPageSchema } from "@/lib/seo";
 export const Route = createFileRoute("/reviews/$slug")({
   loader: ({ params }) => {
     const review = getReviewBySlug(params.slug);
@@ -13,65 +14,48 @@ export const Route = createFileRoute("/reviews/$slug")({
   head: ({ params, loaderData }) => {
     if (!loaderData) {
       return {
-        meta: [{ title: "Review unavailable — DrZeeWrites" }, { name: "robots", content: "noindex" }],
+        meta: [{ title: "Review unavailable — DrZeeWrites" }, { name: "robots", content: "noindex, follow" }],
       };
     }
     const r = loaderData.review;
     const title = `${r.title} — Literature Review | DrZeeWrites`;
-    const description = `${r.pages}-page physician-authored literature review (${r.span}). ${r.summary}`.slice(
-      0,
-      158,
-    );
+    const description = `${r.pages}-page physician-authored literature review (${r.span}). ${r.summary}`.slice(0, 158);
+    const path = `/reviews/${params.slug}`;
+    const url = `${SITE_URL}${path}`;
     return {
-      meta: [
-        { title },
-        { name: "description", content: description },
-        { name: "keywords", content: r.keywords.join(", ") },
-        { property: "og:title", content: `${r.title} — Literature Review` },
-        { property: "og:description", content: description },
-        { property: "og:type", content: "article" },
-        { property: "og:url", content: `/reviews/${params.slug}` },
-        { name: "twitter:card", content: "summary_large_image" },
-      ],
-      links: [{ rel: "canonical", href: `/reviews/${params.slug}` }],
+      ...pageHead({
+        title,
+        description,
+        path,
+        type: "article",
+        keywords: r.keywords.join(", "),
+      }),
       scripts: [
-        {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ScholarlyArticle",
-            headline: r.title,
-            abstract: r.abstract,
-            description,
-            keywords: r.keywords.join(", "),
-            inLanguage: "en",
-            datePublished: `${r.year}-01-01`,
-            audience: { "@type": "MedicalAudience", audienceType: r.audience },
-            author: {
-              "@type": "Person",
-              name: "Dr. Zee",
-              jobTitle: "Pediatrician & Medical Writer",
-              honorificSuffix: "MBBS, MCPS (Pediatrics)",
-            },
-            isAccessibleForFree: !r.gated,
-          }),
-        },
-        {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Portfolio", item: "/portfolio" },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: r.shortTitle,
-                item: `/reviews/${params.slug}`,
-              },
-            ],
-          }),
-        },
+        jsonLd({
+          "@context": "https://schema.org",
+          "@type": "ScholarlyArticle",
+          "@id": `${url}#article`,
+          url,
+          headline: r.title,
+          abstract: r.abstract,
+          description,
+          keywords: r.keywords.join(", "),
+          inLanguage: "en-GB",
+          datePublished: `${r.year}-01-01`,
+          audience: { "@type": "MedicalAudience", audienceType: r.audience },
+          author: { "@id": `${SITE_URL}/about#person` },
+          publisher: { "@id": `${SITE_URL}/#organization` },
+          isAccessibleForFree: !r.gated,
+          mainEntityOfPage: { "@id": `${url}#webpage` },
+        }),
+        jsonLd({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Portfolio", item: `${SITE_URL}/portfolio` },
+            { "@type": "ListItem", position: 2, name: r.shortTitle, item: url },
+          ],
+        }),
       ],
     };
   },
