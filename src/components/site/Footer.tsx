@@ -19,7 +19,12 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-5 py-16 lg:px-6 lg:py-20">
         <div className="grid gap-14 lg:grid-cols-[1.45fr_0.7fr_0.7fr]">
           <div>
-            <p className="eyebrow text-ink-foreground/65">DrZeeWrites · Physician-led</p>
+            <div className="flex items-center gap-3">
+              <span className="flex size-11 items-center justify-center rounded-xl border border-ink-foreground/15 bg-ink-foreground/[0.08] p-1.5">
+                <img src="/logo-mark.png" alt="" className="size-full object-contain" />
+              </span>
+              <p className="eyebrow text-ink-foreground/65">DrZeeWrites · Physician-led</p>
+            </div>
             <p className="mt-4 font-display text-3xl tracking-tight text-ink-foreground">
               Medical content with
               <span className="block text-accent">clinical intelligence.</span>

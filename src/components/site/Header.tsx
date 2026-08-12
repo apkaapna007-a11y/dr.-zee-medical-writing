@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, Stethoscope, Sun, Moon, ArrowUpRight } from "lucide-react";
+import { Menu, X, Sun, Moon, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@/hooks/use-theme";
 
@@ -27,9 +27,9 @@ export function Header() {
           className="group flex items-center gap-3"
           onClick={() => setOpen(false)}
         >
-          <span className="relative flex size-10 items-center justify-center overflow-hidden rounded-xl bg-primary text-primary-foreground shadow-[0_10px_25px_-12px_oklch(0.3_0.08_220_/_0.8)] transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105">
+          <span className="relative flex size-10 items-center justify-center overflow-hidden rounded-xl border border-border/70 bg-card/80 p-1.5 shadow-[0_10px_25px_-12px_oklch(0.3_0.08_220_/_0.8)] transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105">
             <span className="absolute -right-3 -top-3 size-7 rounded-full bg-accent/50 blur-md" aria-hidden />
-            <Stethoscope className="relative size-[1.15rem]" aria-hidden />
+            <img src="/logo-mark.png" alt="" className="relative size-full object-contain" />
           </span>
           <span className="leading-none">
             <span className="block font-display text-[1.1rem] tracking-[-0.025em]">
