@@ -29,26 +29,12 @@ export const Route = createFileRoute("/childcare")({
           about: ["childcare", "daycare safety", "infant health", "parent education"],
           mainEntity: {
             "@type": "ItemList",
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Choosing safe, supportive childcare",
-                url: `${SITE_URL}/childcare#choosing-care`,
-              },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: "Preparing your baby for daycare",
-                url: `${SITE_URL}/childcare#preparing-for-daycare`,
-              },
-              {
-                "@type": "ListItem",
-                position: 3,
-                name: "Childcare health and illness guidance",
-                url: `${SITE_URL}/childcare#childcare-health`,
-              },
-            ],
+            itemListElement: CHILDCARE_POSTS.map((post, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              name: post.title,
+              url: `${SITE_URL}/childcare/${post.slug}`,
+            })),
           },
         }),
         jsonLd(medicalWebPageSchema({
@@ -99,6 +85,54 @@ const TOPICS = [
     eyebrow: "Childcare health",
     title: "Understand illness and return-to-care decisions",
     body: "Clear, evidence-based explanations of common childcare health questions, including when to keep a child home, what to ask about illness policies, and when to contact a clinician.",
+  },
+  {
+    icon: ClipboardCheck,
+    id: "compare-settings",
+    slug: "home-daycare-or-childcare-center",
+    eyebrow: "Choosing care",
+    title: "Compare home daycare and childcare centers",
+    body: "A practical comparison of group size, staffing, policies, flexibility, health oversight, and family fit.",
+  },
+  {
+    icon: HeartPulse,
+    id: "first-week",
+    slug: "baby-first-week-at-daycare",
+    eyebrow: "Starting daycare",
+    title: "Plan your baby’s first week at daycare",
+    body: "Prepare the handover, morning routine, feeding and sleep communication, and a realistic adjustment plan.",
+  },
+  {
+    icon: ClipboardCheck,
+    id: "packing",
+    slug: "what-to-pack-for-daycare",
+    eyebrow: "Practical childcare",
+    title: "What to pack for daycare",
+    body: "A parent-friendly guide to bottles, food, spare clothes, comfort items, health information, and seasonal needs.",
+  },
+  {
+    icon: ShieldCheck,
+    id: "stay-home",
+    slug: "when-to-keep-child-home-from-daycare",
+    eyebrow: "Childcare health",
+    title: "When should a child stay home from daycare?",
+    body: "Use symptoms, participation, hydration, provider policy, and age-specific red flags to plan the next step.",
+  },
+  {
+    icon: ShieldCheck,
+    id: "return-after-fever",
+    slug: "return-to-daycare-after-fever",
+    eyebrow: "Childcare health",
+    title: "When can a child return after a fever?",
+    body: "Understand the role of written provider rules, recovery, participation, and individual medical advice.",
+  },
+  {
+    icon: HeartPulse,
+    id: "infant-sleep",
+    slug: "daycare-nap-and-sleep-questions",
+    eyebrow: "Infant sleep",
+    title: "Questions about infant naps and daycare sleep",
+    body: "Ask about the sleep space, safe-sleep checks, settling, routines, and written plans for special circumstances.",
   },
 ];
 
