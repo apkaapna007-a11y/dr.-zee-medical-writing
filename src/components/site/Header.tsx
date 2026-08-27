@@ -13,6 +13,7 @@ export const NAV = [
   { to: "/testimonials", label: "Testimonials" },
   { to: "/blog", label: "Resources" },
   { to: "/childcare", label: "For Parents" },
+  { to: "/tools", label: "Pediatric Tools" },
   { to: "/cv", label: "CV" },
 ] as const;
 
@@ -23,13 +24,12 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 shadow-[0_8px_30px_-24px_oklch(0.16_0.04_250_/_0.55)] backdrop-blur-2xl backdrop-saturate-150">
       <div className="mx-auto flex h-[4.75rem] max-w-6xl items-center justify-between gap-4 px-5 lg:px-6">
-        <Link
-          to="/"
-          className="group flex items-center gap-3"
-          onClick={() => setOpen(false)}
-        >
+        <Link to="/" className="group flex items-center gap-3" onClick={() => setOpen(false)}>
           <span className="relative flex size-10 items-center justify-center overflow-hidden rounded-xl border border-border/70 bg-card/80 p-1.5 shadow-[0_10px_25px_-12px_oklch(0.3_0.08_220_/_0.8)] transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105">
-            <span className="absolute -right-3 -top-3 size-7 rounded-full bg-accent/50 blur-md" aria-hidden />
+            <span
+              className="absolute -right-3 -top-3 size-7 rounded-full bg-accent/50 blur-md"
+              aria-hidden
+            />
             <img src="/logo-mark.png" alt="" className="relative size-full object-contain" />
           </span>
           <span className="leading-none">
@@ -49,7 +49,10 @@ export function Header() {
               to={item.to}
               className="rounded-full px-3 py-2 text-[0.78rem] font-medium text-muted-foreground transition-colors hover:bg-secondary/70 hover:text-foreground"
               activeOptions={{ exact: item.to === "/" }}
-              activeProps={{ className: "rounded-full bg-secondary px-3 py-2 text-[0.78rem] font-semibold text-foreground" }}
+              activeProps={{
+                className:
+                  "rounded-full bg-secondary px-3 py-2 text-[0.78rem] font-semibold text-foreground",
+              }}
             >
               {item.label}
             </Link>
@@ -95,7 +98,10 @@ export function Header() {
               onClick={() => setOpen(false)}
               className="rounded-xl px-4 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
               activeOptions={{ exact: item.to === "/" }}
-              activeProps={{ className: "rounded-xl bg-secondary px-4 py-3 text-sm font-semibold text-foreground" }}
+              activeProps={{
+                className:
+                  "rounded-xl bg-secondary px-4 py-3 text-sm font-semibold text-foreground",
+              }}
             >
               {item.label}
             </Link>

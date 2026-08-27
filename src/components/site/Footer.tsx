@@ -30,7 +30,8 @@ export function Footer() {
               <span className="block text-accent">clinical intelligence.</span>
             </p>
             <p className="mt-5 max-w-md text-sm leading-relaxed text-ink-foreground/70">
-              Physician-led medical writing for healthcare teams, plus clear, evidence-based childcare guidance for parents and caregivers.
+              Physician-led medical writing for healthcare teams, plus clear, evidence-based
+              childcare guidance for parents and caregivers.
             </p>
             <div className="mt-7 flex flex-wrap gap-2">
               {SOCIALS.map(({ href, label, icon: Icon }) => (
@@ -50,21 +51,82 @@ export function Footer() {
 
           <nav aria-label="Site" className="grid content-start gap-3 text-sm">
             <p className="eyebrow mb-2 text-ink-foreground/55">Explore</p>
-            <Link to="/about" className="text-ink-foreground/70 transition-colors hover:text-ink-foreground">About</Link>
-            <Link to="/services" className="text-ink-foreground/70 transition-colors hover:text-ink-foreground">Services</Link>
-            <Link to="/portfolio" className="text-ink-foreground/70 transition-colors hover:text-ink-foreground">Portfolio</Link>
-            <Link to="/publications" className="text-ink-foreground/70 transition-colors hover:text-ink-foreground">Publications</Link>
-            <Link to="/blog" className="text-ink-foreground/70 transition-colors hover:text-ink-foreground">Resources</Link>
-            <Link to="/childcare" className="text-ink-foreground/70 transition-colors hover:text-ink-foreground">For Parents</Link>
+            <Link
+              to="/about"
+              className="text-ink-foreground/70 transition-colors hover:text-ink-foreground"
+            >
+              About
+            </Link>
+            <Link
+              to="/services"
+              className="text-ink-foreground/70 transition-colors hover:text-ink-foreground"
+            >
+              Services
+            </Link>
+            <Link
+              to="/portfolio"
+              className="text-ink-foreground/70 transition-colors hover:text-ink-foreground"
+            >
+              Portfolio
+            </Link>
+            <Link
+              to="/publications"
+              className="text-ink-foreground/70 transition-colors hover:text-ink-foreground"
+            >
+              Publications
+            </Link>
+            <Link
+              to="/blog"
+              className="text-ink-foreground/70 transition-colors hover:text-ink-foreground"
+            >
+              Resources
+            </Link>
+            <Link
+              to="/childcare"
+              className="text-ink-foreground/70 transition-colors hover:text-ink-foreground"
+            >
+              For Parents
+            </Link>
+            <Link
+              to="/tools"
+              className="text-ink-foreground/70 transition-colors hover:text-ink-foreground"
+            >
+              Pediatric Tools
+            </Link>
           </nav>
 
           <nav aria-label="Legal" className="grid content-start gap-3 text-sm">
             <p className="eyebrow mb-2 text-ink-foreground/55">Continue</p>
-            <Link to="/cv" className="text-ink-foreground/70 transition-colors hover:text-ink-foreground">CV & credentials</Link>
-            <Link to="/contact" className="text-ink-foreground/70 transition-colors hover:text-ink-foreground">Start a project</Link>
-            <Link to="/testimonials" className="text-ink-foreground/70 transition-colors hover:text-ink-foreground">Client feedback</Link>
-            <Link to="/privacy" className="text-ink-foreground/70 transition-colors hover:text-ink-foreground">Privacy Policy</Link>
-            <Link to="/terms" className="text-ink-foreground/70 transition-colors hover:text-ink-foreground">Terms of Use</Link>
+            <Link
+              to="/cv"
+              className="text-ink-foreground/70 transition-colors hover:text-ink-foreground"
+            >
+              CV & credentials
+            </Link>
+            <Link
+              to="/contact"
+              className="text-ink-foreground/70 transition-colors hover:text-ink-foreground"
+            >
+              Start a project
+            </Link>
+            <Link
+              to="/testimonials"
+              className="text-ink-foreground/70 transition-colors hover:text-ink-foreground"
+            >
+              Client feedback
+            </Link>
+            <Link
+              to="/privacy"
+              className="text-ink-foreground/70 transition-colors hover:text-ink-foreground"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              to="/terms"
+              className="text-ink-foreground/70 transition-colors hover:text-ink-foreground"
+            >
+              Terms of Use
+            </Link>
           </nav>
         </div>
 

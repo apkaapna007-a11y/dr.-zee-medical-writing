@@ -21,9 +21,11 @@ import { Route as PublicationsRouteImport } from './routes/publications'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
+import { Route as ToolsRouteImport } from './routes/tools'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as ChildcareSlugRouteImport } from './routes/childcare.$slug'
 import { Route as ReviewsSlugRouteImport } from './routes/reviews.$slug'
+import { Route as ToolsSlugRouteImport } from './routes/tools.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -85,6 +87,11 @@ const TestimonialsRoute = TestimonialsRouteImport.update({
   path: '/testimonials',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ToolsRoute = ToolsRouteImport.update({
+  id: '/tools',
+  path: '/tools',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -100,6 +107,11 @@ const ReviewsSlugRoute = ReviewsSlugRouteImport.update({
   path: '/reviews/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ToolsSlugRoute = ToolsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ToolsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -114,9 +126,11 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
+  '/tools': typeof ToolsRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
   '/childcare/$slug': typeof ChildcareSlugRoute
   '/reviews/$slug': typeof ReviewsSlugRoute
+  '/tools/$slug': typeof ToolsSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -131,9 +145,11 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
+  '/tools': typeof ToolsRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
   '/childcare/$slug': typeof ChildcareSlugRoute
   '/reviews/$slug': typeof ReviewsSlugRoute
+  '/tools/$slug': typeof ToolsSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -149,9 +165,11 @@ export interface FileRoutesById {
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
+  '/tools': typeof ToolsRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
   '/childcare/$slug': typeof ChildcareSlugRoute
   '/reviews/$slug': typeof ReviewsSlugRoute
+  '/tools/$slug': typeof ToolsSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -168,9 +186,11 @@ export interface FileRouteTypes {
     | '/services'
     | '/terms'
     | '/testimonials'
+    | '/tools'
     | '/blog/$slug'
     | '/childcare/$slug'
     | '/reviews/$slug'
+    | '/tools/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -185,9 +205,11 @@ export interface FileRouteTypes {
     | '/services'
     | '/terms'
     | '/testimonials'
+    | '/tools'
     | '/blog/$slug'
     | '/childcare/$slug'
     | '/reviews/$slug'
+    | '/tools/$slug'
   id:
     | '__root__'
     | '/'
@@ -202,9 +224,11 @@ export interface FileRouteTypes {
     | '/services'
     | '/terms'
     | '/testimonials'
+    | '/tools'
     | '/blog/$slug'
     | '/childcare/$slug'
     | '/reviews/$slug'
+    | '/tools/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -220,6 +244,7 @@ export interface RootRouteChildren {
   ServicesRoute: typeof ServicesRoute
   TermsRoute: typeof TermsRoute
   TestimonialsRoute: typeof TestimonialsRoute
+  ToolsRoute: typeof ToolsRouteWithChildren
   ReviewsSlugRoute: typeof ReviewsSlugRoute
 }
 
@@ -309,6 +334,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TestimonialsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tools': {
+      id: '/tools'
+      path: '/tools'
+      fullPath: '/tools'
+      preLoaderRoute: typeof ToolsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/$slug': {
       id: '/blog/$slug'
       path: '/$slug'
@@ -329,6 +361,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/reviews/$slug'
       preLoaderRoute: typeof ReviewsSlugRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/tools/$slug': {
+      id: '/tools/$slug'
+      path: '/$slug'
+      fullPath: '/tools/$slug'
+      preLoaderRoute: typeof ToolsSlugRouteImport
+      parentRoute: typeof ToolsRoute
     }
   }
 }
@@ -355,6 +394,16 @@ const ChildcareRouteWithChildren = ChildcareRoute._addFileChildren(
   ChildcareRouteChildren,
 )
 
+interface ToolsRouteChildren {
+  ToolsSlugRoute: typeof ToolsSlugRoute
+}
+
+const ToolsRouteChildren: ToolsRouteChildren = {
+  ToolsSlugRoute: ToolsSlugRoute,
+}
+
+const ToolsRouteWithChildren = ToolsRoute._addFileChildren(ToolsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -368,6 +417,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesRoute: ServicesRoute,
   TermsRoute: TermsRoute,
   TestimonialsRoute: TestimonialsRoute,
+  ToolsRoute: ToolsRouteWithChildren,
   ReviewsSlugRoute: ReviewsSlugRoute,
 }
 export const routeTree = rootRouteImport
