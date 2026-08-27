@@ -93,7 +93,8 @@ function Home() {
             <p className="mt-7 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
               I'm a paediatrician (MBBS, MCPS) with intensive care experience who writes, reviews
               and edits medical content for healthcare organisations, pharmaceutical companies,
-              digital health startups and medical communications agencies.
+              digital health startups and medical communications agencies. I also create clear,
+              evidence-based childcare guidance for parents and caregivers.
             </p>
           </Reveal>
           <Reveal delay={0.24}>
@@ -109,6 +110,12 @@ function Home() {
                 className="inline-flex min-h-12 items-center gap-2 rounded-full glass px-7 text-sm font-semibold transition-colors hover:border-accent"
               >
                 View writing samples
+              </Link>
+              <Link
+                to="/childcare"
+                className="inline-flex min-h-12 items-center gap-2 rounded-full glass px-7 text-sm font-semibold transition-colors hover:border-accent"
+              >
+                For parents <ArrowRight className="size-4" />
               </Link>
             </div>
           </Reveal>

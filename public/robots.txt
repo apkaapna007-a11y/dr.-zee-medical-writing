@@ -1,4 +1,12 @@
+# DrZeeWrites crawl guidance
+# Public medical-writing and childcare information site
+
 User-agent: *
 Allow: /
+
+# Do not crawl internal application or development paths if they are exposed by the host.
+Disallow: /api/
+Disallow: /_debug/
+Disallow: /__dev/
 
 Sitemap: https://drzeewrites.com/sitemap.xml

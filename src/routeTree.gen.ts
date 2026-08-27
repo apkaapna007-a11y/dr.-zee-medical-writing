@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as BlogRouteImport } from './routes/blog'
+import { Route as ChildcareRouteImport } from './routes/childcare'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CvRouteImport } from './routes/cv'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
@@ -21,6 +22,7 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as ChildcareSlugRouteImport } from './routes/childcare.$slug'
 import { Route as ReviewsSlugRouteImport } from './routes/reviews.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -36,6 +38,11 @@ const AboutRoute = AboutRouteImport.update({
 const BlogRoute = BlogRouteImport.update({
   id: '/blog',
   path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChildcareRoute = ChildcareRouteImport.update({
+  id: '/childcare',
+  path: '/childcare',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -83,6 +90,11 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => BlogRoute,
 } as any)
+const ChildcareSlugRoute = ChildcareSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ChildcareRoute,
+} as any)
 const ReviewsSlugRoute = ReviewsSlugRouteImport.update({
   id: '/reviews/$slug',
   path: '/reviews/$slug',
@@ -93,6 +105,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/blog': typeof BlogRouteWithChildren
+  '/childcare': typeof ChildcareRouteWithChildren
   '/contact': typeof ContactRoute
   '/cv': typeof CvRoute
   '/portfolio': typeof PortfolioRoute
@@ -102,12 +115,14 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/childcare/$slug': typeof ChildcareSlugRoute
   '/reviews/$slug': typeof ReviewsSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/blog': typeof BlogRouteWithChildren
+  '/childcare': typeof ChildcareRouteWithChildren
   '/contact': typeof ContactRoute
   '/cv': typeof CvRoute
   '/portfolio': typeof PortfolioRoute
@@ -117,6 +132,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/childcare/$slug': typeof ChildcareSlugRoute
   '/reviews/$slug': typeof ReviewsSlugRoute
 }
 export interface FileRoutesById {
@@ -124,6 +140,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/blog': typeof BlogRouteWithChildren
+  '/childcare': typeof ChildcareRouteWithChildren
   '/contact': typeof ContactRoute
   '/cv': typeof CvRoute
   '/portfolio': typeof PortfolioRoute
@@ -133,6 +150,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/childcare/$slug': typeof ChildcareSlugRoute
   '/reviews/$slug': typeof ReviewsSlugRoute
 }
 export interface FileRouteTypes {
@@ -141,6 +159,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/blog'
+    | '/childcare'
     | '/contact'
     | '/cv'
     | '/portfolio'
@@ -150,12 +169,14 @@ export interface FileRouteTypes {
     | '/terms'
     | '/testimonials'
     | '/blog/$slug'
+    | '/childcare/$slug'
     | '/reviews/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/blog'
+    | '/childcare'
     | '/contact'
     | '/cv'
     | '/portfolio'
@@ -165,12 +186,14 @@ export interface FileRouteTypes {
     | '/terms'
     | '/testimonials'
     | '/blog/$slug'
+    | '/childcare/$slug'
     | '/reviews/$slug'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/blog'
+    | '/childcare'
     | '/contact'
     | '/cv'
     | '/portfolio'
@@ -180,6 +203,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/testimonials'
     | '/blog/$slug'
+    | '/childcare/$slug'
     | '/reviews/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -187,6 +211,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   BlogRoute: typeof BlogRouteWithChildren
+  ChildcareRoute: typeof ChildcareRouteWithChildren
   ContactRoute: typeof ContactRoute
   CvRoute: typeof CvRoute
   PortfolioRoute: typeof PortfolioRoute
@@ -219,6 +244,13 @@ declare module '@tanstack/react-router' {
       path: '/blog'
       fullPath: '/blog'
       preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/childcare': {
+      id: '/childcare'
+      path: '/childcare'
+      fullPath: '/childcare'
+      preLoaderRoute: typeof ChildcareRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -284,6 +316,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof BlogRoute
     }
+    '/childcare/$slug': {
+      id: '/childcare/$slug'
+      path: '/$slug'
+      fullPath: '/childcare/$slug'
+      preLoaderRoute: typeof ChildcareSlugRouteImport
+      parentRoute: typeof ChildcareRoute
+    }
     '/reviews/$slug': {
       id: '/reviews/$slug'
       path: '/reviews/$slug'
@@ -304,10 +343,23 @@ const BlogRouteChildren: BlogRouteChildren = {
 
 const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
+interface ChildcareRouteChildren {
+  ChildcareSlugRoute: typeof ChildcareSlugRoute
+}
+
+const ChildcareRouteChildren: ChildcareRouteChildren = {
+  ChildcareSlugRoute: ChildcareSlugRoute,
+}
+
+const ChildcareRouteWithChildren = ChildcareRoute._addFileChildren(
+  ChildcareRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   BlogRoute: BlogRouteWithChildren,
+  ChildcareRoute: ChildcareRouteWithChildren,
   ContactRoute: ContactRoute,
   CvRoute: CvRoute,
   PortfolioRoute: PortfolioRoute,

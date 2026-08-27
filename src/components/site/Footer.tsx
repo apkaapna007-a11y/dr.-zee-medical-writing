@@ -30,7 +30,7 @@ export function Footer() {
               <span className="block text-accent">clinical intelligence.</span>
             </p>
             <p className="mt-5 max-w-md text-sm leading-relaxed text-ink-foreground/70">
-              Physician-led medical writing, scientific communication and editorial review for healthcare, pharma, digital health and med-comms teams.
+              Physician-led medical writing for healthcare teams, plus clear, evidence-based childcare guidance for parents and caregivers.
             </p>
             <div className="mt-7 flex flex-wrap gap-2">
               {SOCIALS.map(({ href, label, icon: Icon }) => (
@@ -55,6 +55,7 @@ export function Footer() {
             <Link to="/portfolio" className="text-ink-foreground/70 transition-colors hover:text-ink-foreground">Portfolio</Link>
             <Link to="/publications" className="text-ink-foreground/70 transition-colors hover:text-ink-foreground">Publications</Link>
             <Link to="/blog" className="text-ink-foreground/70 transition-colors hover:text-ink-foreground">Resources</Link>
+            <Link to="/childcare" className="text-ink-foreground/70 transition-colors hover:text-ink-foreground">For Parents</Link>
           </nav>
 
           <nav aria-label="Legal" className="grid content-start gap-3 text-sm">

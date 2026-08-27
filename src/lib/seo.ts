@@ -16,6 +16,8 @@ export const AUTHOR_PERSON = {
   knowsAbout: [
     "Paediatrics",
     "Paediatric intensive care",
+    "Childcare health",
+    "Parent education",
     "Patient education",
     "Clinical medical writing",
     "Medical SEO",
@@ -129,19 +131,60 @@ export const WEBSITE_SCHEMA = {
   url: SITE_URL,
   name: SITE_NAME,
   description:
-    "Physician-authored medical writing, patient education, clinical content, medical SEO, evidence synthesis, and healthcare technology writing.",
+    "Physician-authored medical writing, patient education, childcare health guidance, clinical content, medical SEO, evidence synthesis, and healthcare technology writing.",
   publisher: { "@id": `${SITE_URL}/#organization` },
   inLanguage: "en-GB",
 };
 
+export function medicalWebPageSchema({
+  title,
+  description,
+  path,
+  about = "Childcare health and parent education",
+}: {
+  title: string;
+  description: string;
+  path: string;
+  about?: string;
+}) {
+  const url = `${SITE_URL}${path}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "@id": `${url}#medical-webpage`,
+    url,
+    name: title,
+    description,
+    about,
+    author: { "@id": AUTHOR_ID },
+    reviewedBy: { "@id": AUTHOR_ID },
+    publisher: { "@id": `${SITE_URL}/#organization` },
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    inLanguage: "en-GB",
+  };
+}
+
+export function breadcrumbSchema(items: { name: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: `${SITE_URL}${item.path}`,
+    })),
+  };
+}
+
 export const ORGANIZATION_SCHEMA = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
+  "@type": "Organization",
   "@id": `${SITE_URL}/#organization`,
   name: SITE_NAME,
   url: SITE_URL,
   description:
-    "Physician-led medical writing and clinical content services for healthcare, pharmaceutical, med-comms, and digital health teams.",
+    "Physician-led medical writing and evidence-based childcare guidance for healthcare teams, parents, caregivers, pharmaceutical, med-comms, and digital health audiences.",
   founder: { "@id": AUTHOR_ID },
   employee: { "@id": AUTHOR_ID },
   areaServed: "Worldwide",
